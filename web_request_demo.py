@@ -2,7 +2,7 @@ import requests
 
 base_url = 'https://axweb-vdi:8454/Fashion.DataRef.svc/gtdLines'
 headers = {
-    'AppKey': 'your_app_key_here',
+    'AppKey': 'your_app_key_here ',
     'ClientId': 'your_client_id_here'
 }
 query_options = {
