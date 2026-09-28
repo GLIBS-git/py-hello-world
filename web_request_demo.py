@@ -22,10 +22,15 @@ def read_gtd_lines(legal_entity, gtd_id, log_files=False):
         if gtd_line.get('styleLog') == article_id:
             print(" "*8, gtd_line.get('gtdLineNum'), "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
     def incomplete_plu():
-        plus: dict = gtd_line.get('PLUs')
-        if plus == None or len(plus) != 3:
-            print(" "*8, gtd_line.get('gtdLineNum'), "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
-            print(" "*12, json.dumps(plus, ensure_ascii=False, indent=2))
+        plus: list = gtd_line.get('PLUs')
+        if plus == None or len(plus) == 0:
+            print(" "*8, "No PLUs: ", gtd_line.get('gtdLineNum'), "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
+        else:
+            plu: dict
+            for plu in plus:
+                if len(plu) < 3 or plu.get('invoiceAgentJourId', '').strip() == "" or plu.get('itemId', '').strip() == "0" or plu.get('qty', 0) == 0:
+                    print(" "*8, "Incomplete PLU: ", gtd_line.get('lineNum'), "  ||  ", local_line, "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
+                    print(" "*12, json.dumps(plu, ensure_ascii=False, indent=2))
     base_url = secrets.data_ref_url() + '/gtdLines'
     headers = {}
     headers['AppKey'] = secrets.app_key(legal_entity)
@@ -52,9 +57,11 @@ def read_gtd_lines(legal_entity, gtd_id, log_files=False):
             if gtd_lines == None:
                 print(" "*4, "Empty GTD lines!")
                 break
+            local_line = 0
             for gtd_line in gtd_lines:
-                find_article('EB0003/A3L70/NS')
-                #incomplete_plu()
+                local_line += 1
+                #find_article('EB0003/A3L70/NS')
+                incomplete_plu()
                 #print(json.dumps(gtd_line, ensure_ascii=False, indent=2)) 
                 #break       
             if log_files:
