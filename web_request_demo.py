@@ -13,6 +13,7 @@ page = 1
 while continue_read:
     query_options['page'] = str(page)
     print("Reading page: ", page)
+# Error here
     response = dict(requests.get(base_url, params=query_options, headers=headers, verify=False))  # Set verify=False to ignore SSL certificate warnings
     if response.status_code == 200:
         if response == None:
