@@ -65,6 +65,8 @@ Multiline text 3'''
     print("0123456789"[:3]) # Substring: 012
     print("0123456789"[7:]) # Substring: 789
     print("0" * 5 + "1") # 000001
+    path = r"C:\python\name.txt"
+    print(path)
 
 def demo_string_functions():
     print("==== String functions ====")
