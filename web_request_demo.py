@@ -12,8 +12,6 @@ page = 1
 while True:
     query_options['page'] = str(page)
     print("Reading page: ", page)
-# Error here
-    #response = dict(requests.get(base_url, params=query_options, headers=headers, verify=False))  # Set verify=False to ignore SSL certificate warnings
     response = requests.get(base_url, params=query_options, headers=headers, verify=False)  # Set verify=False to ignore SSL certificate warnings
     if response.status_code == 200:
         resp_json = response.json()
