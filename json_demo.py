@@ -27,7 +27,7 @@ def demo_json_encode_decode():
     js = {"name": "John", "age": 30, "city": "New York"}
     print(type(js))
     print(js) 
-    js_str = json.dumps(js, indent = 2) # Indent -- human readable format
+    js_str = json.dumps(js, ensure_ascii=False, indent = 2) # Indent -- human readable format
     print(js_str)
     js_2 = json.loads(js_str)
     print(type(js_2))
@@ -66,7 +66,7 @@ def demo_json_encode_complex():
     }    
     print(type(js))
     print(js) 
-    js_str = json.dumps(js, indent = 2) # Indent -- human readable format
+    js_str = json.dumps(js, ensure_ascii=False, indent = 2) # Indent -- human readable format
     print(js_str)
 
 

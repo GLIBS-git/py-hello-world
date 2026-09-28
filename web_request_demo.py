@@ -28,10 +28,11 @@ while True:
             print(" "*4, "Empty GTD lines!")
             break
         for gtd_line in gtd_lines:
-            print(json.dumps(gtd_line, indent=2)) 
+            print(json.dumps(gtd_line, ensure_ascii=False, indent=2)) 
             break       
         with open(r"D:\TEMP\GtdLines_" + str(page)+ ".json", 'w') as f:
-            json.dump(resp_json, f, indent=2)
+            json.dump(resp_json, f, ensure_ascii=False, indent=2)
+        #break # For debugging: stop after the first page
     elif response.status_code == 204:
         print(" "*4, "Page is empty.")
         break
