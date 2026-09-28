@@ -20,11 +20,11 @@ def menu():
 def read_gtd_lines(legal_entity, gtd_id, log_files=False):
     def find_article(article_id):
         if gtd_line.get('styleLog') == article_id:
-            print(" "*8, gtd_line.get('gtdLineNum'), "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
+            print(" "*8, gtd_line.get('lineNum'), "  ||  ", local_line, "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
     def incomplete_plu():
         plus: list = gtd_line.get('PLUs')
         if plus == None or len(plus) == 0:
-            print(" "*8, "No PLUs: ", gtd_line.get('gtdLineNum'), "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
+            print(" "*8, "No PLUs: ", gtd_line.get('lineNum'), "  ||  ", local_line, "  ||  ", gtd_line.get('id'), "  ||  ", gtd_line.get('styleLog'))
         else:
             plu: dict
             for plu in plus:
@@ -60,8 +60,8 @@ def read_gtd_lines(legal_entity, gtd_id, log_files=False):
             local_line = 0
             for gtd_line in gtd_lines:
                 local_line += 1
-                #find_article('EB0003/A3L70/NS')
-                incomplete_plu()
+                find_article('EB0003/A3L70/NS')
+                #incomplete_plu()
                 #print(json.dumps(gtd_line, ensure_ascii=False, indent=2)) 
                 #break       
             if log_files:
