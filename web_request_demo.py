@@ -8,22 +8,23 @@ headers['AppKey'] = secrets.app_key()
 headers['ClientId'] = secrets.client_id()
 query_options = {}
 query_options['journalId'] = 'Гтд0017612'
-continue_read = True
 page = 1
-while continue_read:
+while True:
     query_options['page'] = str(page)
     print("Reading page: ", page)
 # Error here
-    response = dict(requests.get(base_url, params=query_options, headers=headers, verify=False))  # Set verify=False to ignore SSL certificate warnings
+    #response = dict(requests.get(base_url, params=query_options, headers=headers, verify=False))  # Set verify=False to ignore SSL certificate warnings
+    response = requests.get(base_url, params=query_options, headers=headers, verify=False)  # Set verify=False to ignore SSL certificate warnings
     if response.status_code == 200:
-        if response == None:
+        resp_json = response.json()
+        if resp_json == None:
             print(" "*4, "Empty response!")
             break
-        print(" "*4, "Lines on page: ", response.get('data', '0'))
-        data = response.get('data')
+        data = dict(resp_json.get('data'))
         if data == None:
             print(" "*4, "Data is empty!")
             break
+        print(" "*4, "Lines on page: ", data.get('pageSize'))
         gtd_lines = data.get('gtdLines')
         if gtd_lines == None:
             print(" "*4, "Empty GTD lines!")
@@ -31,13 +32,14 @@ while continue_read:
         for gtd_line in gtd_lines:
             print(json.dumps(gtd_line, indent=2)) 
             break       
-        with open(r"D:\TEMP\GtdLines_" + str(page)+ ".txt", 'w') as f:
-            json.dump(response.json(), f, indent=2)
+        with open(r"D:\TEMP\GtdLines_" + str(page)+ ".json", 'w') as f:
+            json.dump(resp_json, f, indent=2)
     elif response.status_code == 204:
         print(" "*4, "Page is empty.")
-        continue_read = False
+        break
     else:
         print(" "*4, f"Error: {response.status_code}")
+    page += 1
 print("Finished.")
 
 
