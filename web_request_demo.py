@@ -1,10 +1,10 @@
 import requests
+import web_request_secrets as secrets
 
 base_url = 'https://axweb-vdi:8454/Fashion.DataRef.svc/gtdLines'
-headers = {
-    'AppKey': 'your_app_key_here ',
-    'ClientId': 'your_client_id_here'
-}
+headers = {}
+headers['AppKey'] = secrets.app_key()
+headers['ClientId'] = secrets.client_id()
 query_options = {
     'journalId': 'Гтд0017612',
     'page': '1'
