@@ -122,8 +122,41 @@ def demo_sets():
     print(s2)
     s3 = {1, 2, 3, 1, 2}
     print(s3) # {1, 2, 3} - duplicates are removed
-
-
+    print(len(s2))
+    s1.add(1)
+    s1.add(2)   
+    s1.add(1)
+    s1.add(2)   
+    s1.add(3)   
+    s1.add(4)   
+    print(s1) # {1, 2, 3, 4} - duplicates are removed
+    s1.remove(4) # Removes 4 from the set
+    print(s1) # {1, 2, 3}
+    #s1.remove(5) # Throws KeyError because 5 is not in the set
+    s1.discard(5) # Does not throw an error inspite of 5 is not in the set
+    s1.discard(3) # Removes 3 from the set
+    print(s1) # {1, 2}
+    s1.clear() # Removes all elements from the set
+    print(s1) # set()
+    for s in s2:
+        print(s) # Prints each element in the set
+    s4 = {1, 2, 3, 4, 5}
+    s5 = s4.copy() # Creates a copy of the set
+    print(s5) # {1, 2, 3, 4, 5}
+    s4.remove(5) # Removes 5 from the set
+    if 5 in s4:
+        print("5 is in s4")
+    print(s5) # {1, 2, 3, 4, 5} - s5 is not affected by the change in s4
+    print({1,2,3} | {3,4,5}) # {1, 2, 3, 4, 5} - Union of two sets
+    print({1,2,3}.union({3,4,5})) # {1, 2, 3, 4, 5} - Union of two sets (the same as above)
+    print({1,2,3} & {3,4,5}) # {3} - Intersection of two sets
+    print({1,2,3}.intersection({3,4,5})) # {3} - Intersection of two sets (the same as above)
+    print({1,2,3} - {3,4,5}) # {1, 2} - Difference of two sets  
+    print({1,2,3}.difference({3,4,5})) # {1, 2} - Difference of two sets (the same as above)
+    print({1,2,3} ^ {3,4,5}) # {1, 2, 4, 5} - Symmetric difference of two sets
+    print({1,2,3}.symmetric_difference({3,4,5})) # {1, 2, 4, 5} - Symmetric difference of two sets (the same as above)
+    print({1,2,3}.issubset({1,2,3,4,5})) # True - Checks if the first set is a subset of the second set
+    print({1,2,3}.issuperset({1,2})) # True - Checks if the first set is a superset of the second set
 
 
 
