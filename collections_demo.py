@@ -2,27 +2,21 @@
     Collections demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import glibs_tools
 import sys
-import os
-import subprocess
 
 def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()
     #demo_lists()
     #demo_tuples()
     #demo_dictionaries()
-    demo_dictionaries_2()
+    #demo_dictionaries_2()
+    demo_sets()
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_lists():
     print("==== Lists ====")
     emptyList = []
@@ -98,7 +92,7 @@ def demo_dictionaries(): # Mutable key-value pairs
     d_2 = {1:"a", 1:"b", 1:"c"}
     print(d_2) # {1: 'c'}
 
-def demo_dictionaries_2(): # Mutable key-value pairs
+def demo_dictionaries_2():
     print("==== Dictionaries part 2 ====")
     l = [
         [1, "One"],
@@ -120,6 +114,16 @@ def demo_dictionaries_2(): # Mutable key-value pairs
     print(l2)
     d2 = dict(l)
     print(d2)
+
+def demo_sets():
+    print("==== Sets ====")
+    s1 = set()
+    s2 = {1, 2, 3, 4, 5}
+    print(s2)
+    s3 = {1, 2, 3, 1, 2}
+    print(s3) # {1, 2, 3} - duplicates are removed
+
+
 
 
 

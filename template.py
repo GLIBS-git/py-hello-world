@@ -1,24 +1,19 @@
 '''
-    Collections demo Glibs Python scripts
+    Template demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import glibs_tools
 import os
-import subprocess
 import sys
 
 def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
+
 
 
 

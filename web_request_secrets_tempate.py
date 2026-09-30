@@ -4,10 +4,10 @@
 def data_ref_url():
     return "https://server.com:1234/api/v1"
 
-def app_key():
+def app_key(legal_entity):
     return 'app-key'
 
-def client_id():
+def client_id(legal_entity):
     return 'client-id'   
 
 
