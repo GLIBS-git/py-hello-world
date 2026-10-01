@@ -2,26 +2,19 @@
     Console demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import glibs_tools
 import sys
-import os
-import subprocess
 
 def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     demo_print()
     #demo_print_sys_names()
     #demo_input()
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_print():
     print("==== Demo of 'print' ====")
     print("Hello world!")

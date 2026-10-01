@@ -11,10 +11,11 @@ def main(_args):
 def menu():
     glibs_tools.clear_console()
     #demo_lists()
+    demo_lists_2()
     #demo_tuples()
     #demo_dictionaries()
     #demo_dictionaries_2()
-    demo_sets()
+    #demo_sets()
     #test()
 
 def demo_lists():
@@ -47,6 +48,30 @@ def demo_lists():
     print(min([1, 2, 3, 4, 5])) # 1
     print(max([1, 2, 3, 4, 5])) # 5
     print([1, 2, 3, "a", "b", "c"]) # [1, 2, 3, 'a', 'b', 'c']
+    charList.remove("c") # Remove "c" from the list
+    print(charList) # ["A", "B", "D", "E"]
+    charList.pop(2) # Remove the element at index 2
+    print(charList) # ["A", "B", "E"]
+    for c in charList:
+        print(c) # Prints each element in the list
+
+def demo_lists_2():
+    print("==== Lists part 2 ====")
+    l1 = [1, 2, 3, 4, 5] + [6, 7, 8, 9, 10] # Concatenation of two lists
+    print(l1) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    l2 = [1, 2, 3, 4, 5] * 2 # Repetition of a list
+    print(l2) # [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+    l3 = [1, 2, 3, 4, 5]
+    l4 = l3.copy() # Creates a copy of the list
+    print(l4) # [1, 2, 3, 4, 5]
+    l3.remove(5) # Removes 5 from the list
+    print(l4) # [1, 2, 3, 4, 5] - l4 is not affected by the change in l3
+    l5 = [5, 4, 3, 2, 1]
+    l5.sort() # Sorts the list in ascending order
+    print(l5) # [1, 2, 3, 4, 5] 
+    l5.clear() # Removes all elements from the list
+    print(l5) # []
+
 
 def demo_tuples(): # Immutable lists
     print("==== Tuples ====")
@@ -114,6 +139,26 @@ def demo_dictionaries_2():
     print(l2)
     d2 = dict(l)
     print(d2)
+    print(d2.keys()) # dict_keys([1, 2, 3, 4, 5])
+    print(d2.values()) # dict_values(['One', 'Two', 'Three', 'Four', 'Five'])
+    print(d2.items()) # dict_items([(1, 'One'), (2, 'Two'), (3, 'Three'), (4, 'Four'), (5, 'Five')])
+    d1 = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five"}
+    del d1[5] # Removes the key-value pair with key 5
+    print(d1) # {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four'}
+    #del d1[7] # Raises KeyError because key 7 is not in the dictionary
+    print(d1.pop(7, "Key not found")) # Returns the value for key 7 if it exists, otherwise returns "Key not found"
+    #d1.pop(7) # Raises KeyError because key 7 is not in the dictionary
+    d2 = d1.copy() # Creates a copy of the dictionary
+    print(d2) # {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four'}
+    d3 = {1: "One", 2: "Two", 3: "Three"}
+    d3.update({4: "Four"})
+    print(d3) # {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four'}
+    for key, value in d3.items():
+        print(key, value) # Prints each key-value pair in the dictionary
+    for key in d3.keys():
+        print(key) # Prints each key in the dictionary
+    for value in d3.values():
+        print(value) # Prints each value in the dictionary
 
 def demo_sets():
     print("==== Sets ====")
@@ -124,10 +169,10 @@ def demo_sets():
     print(s3) # {1, 2, 3} - duplicates are removed
     print(len(s2))
     s1.add(1)
-    s1.add(2)   
+    s1.add(2)
     s1.add(1)
-    s1.add(2)   
-    s1.add(3)   
+    s1.add(2)
+    s1.add(3)
     s1.add(4)   
     print(s1) # {1, 2, 3, 4} - duplicates are removed
     s1.remove(4) # Removes 4 from the set

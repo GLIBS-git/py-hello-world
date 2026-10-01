@@ -79,6 +79,10 @@ def demo_variables_and_inner_functions():
         print("Local inner 2: ", s)
     inner_2()
     print("Top function after inner 2:", s)
+    def printer(pt):
+        print(pt)
+    #printer("Hello world!", 1) # This will raise an error because the printer function is defined to take only one argument, but two arguments are provided. The second argument (1) is not expected by the function definition.
+
 
 def demo_function_return(_case=1):
     print("==== Demo switch case ====")
