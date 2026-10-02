@@ -11,11 +11,12 @@ def main(_args):
 def menu():
     glibs_tools.clear_console()
     #demo_lists()
-    demo_lists_2()
+    #demo_lists_2()
     #demo_tuples()
     #demo_dictionaries()
     #demo_dictionaries_2()
     #demo_sets()
+    demo_sets_2()
     #test()
 
 def demo_lists():
@@ -192,6 +193,9 @@ def demo_sets():
     if 5 in s4:
         print("5 is in s4")
     print(s5) # {1, 2, 3, 4, 5} - s5 is not affected by the change in s4
+
+def demo_sets_2():
+    print("==== Sets part 2 ====")
     print({1,2,3} | {3,4,5}) # {1, 2, 3, 4, 5} - Union of two sets
     print({1,2,3}.union({3,4,5})) # {1, 2, 3, 4, 5} - Union of two sets (the same as above)
     print({1,2,3} & {3,4,5}) # {3} - Intersection of two sets
@@ -202,6 +206,8 @@ def demo_sets():
     print({1,2,3}.symmetric_difference({3,4,5})) # {1, 2, 4, 5} - Symmetric difference of two sets (the same as above)
     print({1,2,3}.issubset({1,2,3,4,5})) # True - Checks if the first set is a subset of the second set
     print({1,2,3}.issuperset({1,2})) # True - Checks if the first set is a superset of the second set
+    s1 = frozenset({1, 2, 3, 4, 5}) # Frozen set
+    print(s1) # frozenset({1, 2, 3, 4, 5})
 
 
 
