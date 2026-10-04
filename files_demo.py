@@ -67,18 +67,23 @@ def demo_files():
 def demo_files_2():
     print("==== File create, read, part 2 ====")
     TMP_FILE_PATH = r'/home/glibs/Tmp'
+    if not os.path.exists(TMP_FILE_PATH):
+        raise Exception(f"Directory {TMP_FILE_PATH} does not exist. Please create it first.")
     TMP_FILE_NAME = 'Py_test.txt'
     if not os.path.exists(TMP_FILE_PATH):
         os.makedirs(TMP_FILE_PATH) # Creates the directory if it does not exist
     TMP_FILE_FULL_PATH = os.path.join(TMP_FILE_PATH, TMP_FILE_NAME)
+    folder, file_name = os.path.split(TMP_FILE_FULL_PATH)
+    print(f"Folder: {folder}")
+    print(f"File name: {file_name}")
     txt_l = [f"Test content {i}!" for i in range(1, 8)]
     txt = str.join("\n", txt_l)
     print()
-    print("="*10, "1", "="*10)
     with open(TMP_FILE_FULL_PATH, "w") as f1:
         f1.write(txt)
     if os.path.exists(TMP_FILE_FULL_PATH):
         with open(TMP_FILE_FULL_PATH, "r") as f1:
+            print("="*10, "1", "="*10)
             for l in f1:
                 print(l)
             print()
