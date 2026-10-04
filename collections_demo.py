@@ -72,6 +72,13 @@ def demo_lists_2():
     print(l5) # [1, 2, 3, 4, 5] 
     l5.clear() # Removes all elements from the list
     print(l5) # []
+    txt_l = [f"Test content {i}!" for i in range(1, 8)] # the same as below
+    #for i in range (1, 8):
+    #    txt_l.append(f"Test content {i}!")
+    print(txt_l) # ['Test content 1!', 'Test content 2!', 'Test content 3!', 'Test content 4!', 'Test content 5!', 'Test content 6!', 'Test content 7!']
+    txt_l = [f"Test content {i}!" for i in range(1, 8) if i % 2 == 0]
+    print(txt_l) # ['Test content 2!', 'Test content 4!', 'Test content 6!']
+
 
 
 def demo_tuples(): # Immutable lists
