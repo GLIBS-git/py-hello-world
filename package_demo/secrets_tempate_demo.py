@@ -24,7 +24,7 @@ def stock_service_sql_connection_string():
         'Trusted_Connection=yes;'
         'Encrypt=yes;'
         'TrustServerCertificate=yes;'
-        'Application Name=Glibs demo Python test application;'
+        'Application Name=Glibs Python demo scripts;'
         'MultiSubnetFailover=yes'
     )
 
