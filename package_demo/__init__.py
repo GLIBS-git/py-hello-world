@@ -1,4 +1,4 @@
-# To enable Python read modules from subfolders, you can create an empty __init__.py file in the subfolder. 
+# To enable Python read modules from subfolders, you must create an empty __init__.py file in the subfolder. 
 # This file tells Python that the folder should be treated as a package, allowing you to import modules from it.
 
 # Python reads modules from the current directory first, then from the directories in sys.path. 

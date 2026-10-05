@@ -7,7 +7,7 @@ import json
 import requests
 import sys
 import urllib3
-import web_request_secrets as secrets
+import package_demo.secrets_demo as secrets
 
 def main(_args):
     menu()

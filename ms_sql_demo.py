@@ -15,7 +15,7 @@ def menu():
 
 def read_ms_sql():
     print("==== Reading MS SQL ====")
-
+    pyodbc.connect('')
 
 
 

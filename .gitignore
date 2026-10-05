@@ -1,6 +1,6 @@
 __pycache__/
 .vscode/
-web_request_secrets.py
+secrets_demo.py
 
 
 

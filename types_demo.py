@@ -13,8 +13,8 @@ def main(_args):
 
 def menu():
     glibs_tools.clear_console()    
-    demo_types()
-    #demo_string()
+    #demo_types()
+    demo_string()
     #demo_string_functions()
     #demo_string_formatting()
     #demo_dates()
@@ -46,7 +46,7 @@ def demo_string():
     print(s2)
     mls = ("123"
     "456") # Multiline string
-    print(mls)
+    print(mls) # 123456
     mlt = '''Multiline text 1
 Multiline text 2
 Multiline text 3'''
