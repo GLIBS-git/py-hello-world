@@ -4,7 +4,7 @@
 #!/usr/bin/python3
 from ast import If
 
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
 import os
 import sys
 

@@ -2,7 +2,7 @@
     Collections demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
 import sys
 
 def main(_args):

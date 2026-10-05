@@ -2,7 +2,7 @@
     JSON demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
 import json
 import os
 import subprocess

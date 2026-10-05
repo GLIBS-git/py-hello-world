@@ -4,7 +4,7 @@
 #!/usr/bin/python3
 import collections_demo
 import console_demo
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
 import json_demo
 import logic_demo
 #import math_demo as md # May be aliased

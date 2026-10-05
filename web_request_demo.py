@@ -2,12 +2,12 @@
     Collections demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-import glibs_tools
 import json
+import package_demo.glibs_tools as glibs_tools
+import package_demo.secrets_demo as secrets
 import requests
 import sys
 import urllib3
-import package_demo.secrets_demo as secrets
 
 def main(_args):
     menu()

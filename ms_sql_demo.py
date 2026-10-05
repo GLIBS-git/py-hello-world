@@ -2,7 +2,8 @@
     MS SQL demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
+import package_demo.secrets_demo as secrets
 import pyodbc
 import sys
 
@@ -15,7 +16,7 @@ def menu():
 
 def read_ms_sql():
     print("==== Reading MS SQL ====")
-    pyodbc.connect('')
+    conn = pyodbc.connect(secrets.get_ms_sql_connection_string())
 
 
 

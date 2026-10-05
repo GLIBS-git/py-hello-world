@@ -3,7 +3,7 @@
 '''
 #!/usr/bin/python3
 import asyncio
-import glibs_tools
+import package_demo.glibs_tools as glibs_tools
 import datetime
 import sys
 import time
