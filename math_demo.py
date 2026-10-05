@@ -3,27 +3,20 @@
 '''
 #!/usr/bin/python3
 from decimal import Decimal, ROUND_HALF_UP
+import glibs_tools
 import random
-import os
-import subprocess
 import sys
 
 def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     #demo_arythmetic()
     #demo_decimal()
     demo_random()
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_arythmetic():
     print("==== Demo of arythmetic ====")
     a = 7

@@ -2,6 +2,7 @@
     JSON demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import glibs_tools
 import json
 import os
 import subprocess
@@ -11,17 +12,11 @@ def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     #demo_json_encode_decode()
     demo_json_encode_complex()
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_json_encode_decode():
     print("==== JSON encode & decode ====")
     js = {"name": "John", "age": 30, "city": "New York"}

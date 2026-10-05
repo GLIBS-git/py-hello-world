@@ -3,7 +3,6 @@
 '''
 #!/usr/bin/python3
 import glibs_tools
-import os
 import sys
 
 def main(_args):

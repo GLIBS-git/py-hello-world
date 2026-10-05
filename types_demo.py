@@ -3,9 +3,8 @@
 '''
 #!/usr/bin/python3
 import asyncio
+import glibs_tools
 import datetime
-import os
-import subprocess
 import sys
 import time
 
@@ -13,7 +12,7 @@ def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     demo_types()
     #demo_string()
     #demo_string_functions()
@@ -21,12 +20,6 @@ def menu():
     #demo_dates()
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_types():
     print("==== Demo of type conversion ====")
     x = 1

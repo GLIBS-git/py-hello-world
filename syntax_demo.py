@@ -4,6 +4,7 @@
 #!/usr/bin/python3
 import collections_demo
 import console_demo
+import glibs_tools
 import json_demo
 import logic_demo
 #import math_demo as md # May be aliased
@@ -17,7 +18,7 @@ def main(_args):
     menu()
 
 def menu():
-    clear_console()    
+    glibs_tools.clear_console()    
     # Uncomment the test you want to run:
     collections_demo.menu()
     #console_demo.menu()
@@ -33,12 +34,6 @@ def menu():
     #print(demo_a_la_ax_strfmt(123, "Text", 123)) # Raises error
     #test()
 
-def clear_console():
-    if os.name == "nt":
-        subprocess.run(["cmd", "/c", "cls"], check=False)
-    else:
-        subprocess.run(["clear"], check=False)
-        
 def demo_exceptions():
     print("==== Demo of exceptions ====")
     try:
