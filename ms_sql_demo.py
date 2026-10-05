@@ -12,6 +12,7 @@ def main(_args):
 
 def menu():
     glibs_tools.clear_console()    
+    read_ms_sql()
     #test()
 
 def read_ms_sql():
