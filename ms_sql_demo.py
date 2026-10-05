@@ -8,6 +8,7 @@ import pyodbc
 import sys
 
 def main(_args):
+    read_ms_sql()
     menu()
 
 def menu():
