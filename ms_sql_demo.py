@@ -16,7 +16,7 @@ def menu():
 
 def read_ms_sql():
     print("==== Reading MS SQL ====")
-    conn = pyodbc.connect(secrets.get_ms_sql_connection_string())
+    conn = pyodbc.connect(secrets.stock_service_sql_connection_string())
 
 
 
