@@ -8,6 +8,7 @@ import pyodbc
 import sys
 
 def main(_args):
+    read_ms_sql()
     menu()
 
 def menu():
@@ -17,7 +18,7 @@ def menu():
 
 def read_ms_sql():
     print("==== Reading MS SQL ====")
-    conn = pyodbc.connect(secrets.get_ms_sql_connection_string())
+    conn = pyodbc.connect(secrets.stock_service_sql_connection_string())
 
 
 
