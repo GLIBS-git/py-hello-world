@@ -18,8 +18,13 @@ def menu():
 
 def read_ms_sql():
     print("==== Reading MS SQL ====")
-    conn = pyodbc.connect(secrets.stock_service_sql_connection_string())
-
+    with pyodbc.connect(secrets.stock_service_sql_connection_string()) as conn:
+        query = "SELECT TOP 1 [ItemId], [Name] FROM [Items] WHERE [ItemId] = ?;"
+        cursor = conn.cursor()
+        cursor.execute(query, ('7124813',))
+        for row in cursor:
+            print(row)
+            print(row.ItemId, row.Name)
 
 
 def test():
