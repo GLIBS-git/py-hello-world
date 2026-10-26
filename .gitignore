@@ -1,6 +1,7 @@
 __pycache__/
 .vscode/
 secrets_demo.py
+.venv/
 
 
 
