@@ -7,7 +7,7 @@ import package_demo.glibs_tools as glibs_tools
 import package_demo.secrets_demo as secrets
 import requests
 import sys
-import urllib3
+import urllib3 
 
 def main(_args):
     menu()
@@ -33,8 +33,8 @@ def read_gtd_lines(legal_entity, gtd_id, log_files=False):
                     print(" "*12, json.dumps(plu, ensure_ascii=False, indent=2))
     base_url = secrets.data_ref_url() + '/gtdLines'
     headers = {}
-    headers['AppKey'] = secrets.app_key(legal_entity)
-    headers['ClientId'] = secrets.client_id(legal_entity)
+    headers['AppKey'] = secrets.app_key_1s(legal_entity)
+    headers['ClientId'] = secrets.client_id_1s(legal_entity)
     query_options = {}
     query_options['journalId'] = gtd_id
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Suppress the SSL warning

@@ -14,10 +14,11 @@ def main(_args):
 def menu():
     glibs_tools.clear_console()    
     #demo_types()
-    demo_string()
+    #demo_string()
     #demo_string_functions()
     #demo_string_formatting()
     #demo_dates()
+    demo_binary()
     #test()
 
 def demo_types():
@@ -25,13 +26,13 @@ def demo_types():
     x = 1
     y = "a"
     z = 1.11
-    print(str(x) + " " + y)
-    print(int(z))
+    print(str(x) + " " + y) # 1 a
+    print(int(z)) # 1
     a = "123"
     b = 25
-    print(int(a) + b)
+    print(int(a) + b) # 148
     c = "1.11"
-    print(float(c) + z)
+    print(float(c) + z) # 2.22
     d = "4a5b6"
     #print(int(d)) # This will raise a ValueError because the string contains non-numeric characters
     print(d.isdigit()) # False, because the string contains non-numeric characters
@@ -106,6 +107,32 @@ def demo_dates():
     print(dt_4)
     dt_5 = datetime.datetime.strptime("01-01-27 00:00:00", "%d-%m-%y %H:%M:%S")
     print(dt_5)
+
+def demo_binary():
+    print("==== Demo of binary data ====")
+    byte: int = 0b10101010 # Set binary value
+    print(byte) # 170
+    byte2 = 0xFF # Set hexadecimal value
+    print(byte2) # 255
+    byte3 = 0o77 # Set octal value
+    print(byte3) # 63
+    byte4 = bytes([0b10101010, 0xFF, 0o77]) # Create bytes object
+    print(byte4) # b'\xaa\xff?'
+    print(type(byte4)) # <class 'bytes'>
+    print(byte4[0]) # 170
+    print(byte4[1]) # 255
+    print(byte4[2]) # 63
+    array = bytearray([0b10101010, 0xFF, 0o77]) # Create bytearray object
+    print(array) # bytearray(b'\xaa\xff?')
+    print(type(array)) # <class 'bytearray'>
+    print(array[0]) # 170
+    print(array[1]) # 255
+    print(array[2]) # 63
+    ba = bytearray()
+    print(ba) # bytearray(b'')
+    ba[0] = 0b10101010 # Set value at index 0
+    ba[1] = 0xFF # Set value at index 1
+    print(ba) # bytearray(b'\xaa\xff')
 
 
 

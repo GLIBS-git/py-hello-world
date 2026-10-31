@@ -14,7 +14,8 @@ def menu():
     glibs_tools.clear_console()    
     #demo_arythmetic()
     #demo_decimal()
-    demo_random()
+    #demo_random()
+    demo_bitwise()
     #test()
 
 def demo_arythmetic():
@@ -88,6 +89,26 @@ def demo_random():
     print(char_list)
     print(random.choice(char_list)) # Select any element from the list
     print(random.choice(char_list))
+
+def demo_bitwise():
+    print("==== Demo bitwise operations ====")
+    a: int = 5  # 101 in binary
+    b: int = 3  # 011 in binary
+    print(a & b)  # 001 (1 in decimal)
+    print(a | b)  # 111 (7 in decimal)
+    print(a ^ b)  # 110 (6 in decimal)
+    print(~a)  # -6 (complement of a)
+    print(a << 1)  # 1010 (10 in decimal)
+    print(a >> 1)  # 010 (2 in decimal)
+    print(int(0b1000)) # 8
+    byte: bytes = bytes([8])
+    print(byte) # b'\x08'
+    print(f'{byte[0]:b}') # 1000
+    print(f'{byte[0]:08b}') # 00001000
+    print(byte[0] & 1) # 0
+    print(byte[0] >> 1 & 1) # 0
+    print(byte[0] >> 2 & 1) # 0
+    print(byte[0] >> 3 & 1) # 1
 
 
 

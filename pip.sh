@@ -16,9 +16,12 @@ source .venv/bin/activate
 # Deactivate venv
 deactivate
 
+# Install packages in venv
+pip install requests
 
-
-
+# Check if packages are installed
+pip list
+pip show requests
 
 
 
