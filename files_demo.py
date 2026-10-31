@@ -2,8 +2,7 @@
     Files demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-from ast import If
-
+#from ast import If
 import package_demo.glibs_tools as glibs_tools
 import os
 import sys
@@ -25,7 +24,7 @@ def demo_files():
         os.makedirs(TMP_FILE_PATH) # Creates the directory if it does not exist
     TMP_FILE_FULL_PATH = os.path.join(TMP_FILE_PATH, TMP_FILE_NAME)
     print()
-    print("="*10, "1", "="*10)
+    print("="*10, "  1  ", "="*10)
     with open(TMP_FILE_FULL_PATH, "w") as f1: # If directory does not exist, it will raise an error. If file does not exist, it will create a new file. 
                                          # If file exists, it will overwrite the content.
         f1.write("Test content!")
@@ -36,8 +35,8 @@ def demo_files():
             print(f1.read())    # Test content!Test content!Test content!
                                 # No line breaks.
     print()
-    print("="*10, "2", "="*10)
-    with open(TMP_FILE_FULL_PATH, "w") as f1:
+    print("="*10, "  2  ", "="*10)
+    with open(TMP_FILE_FULL_PATH, "w") as f1: 
         f1.write("Test content!\n")
         f1.write("Test content!\n")
         f1.write("Test content!\n")
@@ -45,7 +44,7 @@ def demo_files():
         with open(TMP_FILE_FULL_PATH, "r") as f1:
             print(f1.read()) # Three lines with line breaks
     print()
-    print("="*10, "3", "="*10)
+    print("="*10, "  3  ", "="*10)
     txt_l = []
     #for i in range (1, 8):
     #    txt_l.append(f"Test content {i}!")
@@ -56,7 +55,7 @@ def demo_files():
         with open(TMP_FILE_FULL_PATH, "r") as f1:
             print(f1.read()) # Test content 1!Test content 2!Test content 3!Test content 4!Test content 5!Test content 6!Test content 7!
     print()
-    print("="*10, "4", "="*10)
+    print("="*10, "  4  ", "="*10)
     txt = str.join("\n", txt_l)
     with open(TMP_FILE_FULL_PATH, "w") as f1:
         f1.write(txt)
@@ -83,21 +82,21 @@ def demo_files_2():
         f1.write(txt)
     if os.path.exists(TMP_FILE_FULL_PATH):
         with open(TMP_FILE_FULL_PATH, "r") as f1:
-            print("="*10, "1", "="*10)
+            print("="*10, "  1  ", "="*10)
             for l in f1:
                 print(l)
             print()
-            print("="*10, "2", "="*10)
+            print("="*10, "  2  ", "="*10)
             f1.seek(0) # Read from the beginning of the file
             print(f1.read())
             print()
-            print("="*10, "3", "="*10)
+            print("="*10, "  3  ", "="*10)
             f1.seek(0) # Read from the beginning of the file
             for l in f1:
                 print(l.replace("\n", "")) # Remove line breaks when printing
     return
     print()
-    print("="*10, "2", "="*10)
+    print("="*10, "  2  ", "="*10)
     with open(TMP_FILE_FULL_PATH, "a") as f1:
         f1.write("Test content 2!")
         f1.write("Test content 3!")

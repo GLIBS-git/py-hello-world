@@ -4,8 +4,6 @@
 #!/usr/bin/python3
 import package_demo.glibs_tools as glibs_tools
 import json
-import os
-import subprocess
 import sys
 
 def main(_args):
