@@ -18,6 +18,17 @@ def menu():
 
 def cert_cache():
     print("==== Cert cache demo ====")
+    cd = cert_data()
+    for i in range(len(cd)):
+        cert = cd[i]
+        
+        pass
+    
+
+
+
+def cert_data(debug = False):
+    #print("==== Cert cache demo ====")
     js = [
         {
             "certId": "C-0001",
@@ -90,8 +101,12 @@ def cert_cache():
             "sexs": ["F", "U"]
         }
     ]
-    print("Cert cache demo: ", js)
-    print(json.dumps(js, ensure_ascii=False, indent = 2)) # Indent -- human readable format
+    if debug:
+        print("Cert cache demo: ", js)
+        print(json.dumps(js, ensure_ascii=False, indent = 2)) # Indent -- human readable format
+    return js
+
+
 
 
 def test():
