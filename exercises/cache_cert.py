@@ -2,6 +2,7 @@
     Cache certificate demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import datetime
 import json
 import numpy as np
 from pathlib import Path
@@ -14,20 +15,39 @@ def main(_args):
 
 def menu():
     glibs_tools.clear_console()    
+    start = datetime.datetime.now()
+    startCaching = datetime.datetime.now()
     cert_cache()
-    #test()
+    print("Elapsed time caching: ", datetime.datetime.now() - startCaching)
+    startSearching = datetime.datetime.now()
+    cert_test("US", "M")
+    print()
+    print("Elapsed time searching: ", datetime.datetime.now() - startSearching)
+    print("Elapsed time total: ", datetime.datetime.now() - start)
 
 cert2id_map, id2cert_map = {}, {}
 country_bitmaps, sex_bitmaps = {}, {}
 
-def cert_cache():
-    print("==== Cert cache demo ====")
+def cert_test(country, sex):
+    print("==== Test cert search ====")
+    counrty_bitmap = country_bitmaps.get(country)
+    sex_bitmap = sex_bitmaps.get(sex)
+    certList = counrty_bitmap & sex_bitmap
+    for i in range(len(certList)):
+        if certList[i]:
+            certId = id2cert_map.get(i)
+            print("Cert ID: ", certId)
+
+def cert_cache(debug = False):
+    if debug:
+        print("==== Build cert cache ====")
     global cert2id_map, id2cert_map, country_bitmaps, sex_bitmaps
     #cd = cert_data(True)
     cd = cert_data()
     for i in range(len(cd)):
         cert = cd[i]
-        print("Cert ID: ", cert.get('certId'))
+        if debug:
+            print("Cert ID: ", cert.get('certId'))
         cert2id_map[cert.get('certId')] = i
         id2cert_map[i] = cert.get('certId')
         for country in cert.get('countries'):
@@ -48,18 +68,19 @@ def cert_cache():
                 bit_map = sex_bitmaps[sex]
                 bit_map[i] = True
                 sex_bitmaps[sex] = bit_map
-    print()
-    print("Cert to ID map: ", cert2id_map)
-    print()
-    print("ID to Cert map: ", id2cert_map)
-    print()
-    print("Country to Cert map: ", country_bitmaps)
-    print()
-    print("Sex to Cert map: ", sex_bitmaps)
-
+    if (debug):
+        print()
+        print("Cert to ID map: ", cert2id_map)
+        print()
+        print("ID to Cert map: ", id2cert_map)
+        print()
+        print("Country to Cert map: ", country_bitmaps)
+        print()
+        print("Sex to Cert map: ", sex_bitmaps)
 
 def cert_data(debug = False):
-    #print("==== Cert cache demo ====")
+    if debug:
+        print("==== Cert cache demo data ====")
     js = [
         {
             "certId": "C-0001",
@@ -134,14 +155,9 @@ def cert_data(debug = False):
     ]
     if debug:
         print("Cert cache demo: ", js)
-        print(json.dumps(js, ensure_ascii=False, indent = 2)) # Indent -- human readable format
+        print()
+        print(json.dumps(js, ensure_ascii = False, indent = 2)) # Indent -- human readable format
     return js
-
-
-
-
-def test():
-    print("==== Test ====")
 
 
 if __name__ == "__main__": # This will run if the script was run directly, not called as the module
