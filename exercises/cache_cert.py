@@ -3,6 +3,7 @@
 '''
 #!/usr/bin/python3
 import json
+import numpy as np
 from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent / "package_demo")) # Add the modules directory to the sys.path to allow importing modules from it
@@ -21,17 +22,17 @@ country_bitmap, sex_bitmap = {}, {}
 
 def cert_cache():
     print("==== Cert cache demo ====")
+    global cert2id_map, id2cert_map, country_bitmap, sex_bitmap
     #cd = cert_data(True)
     cd = cert_data()
     for i in range(len(cd)):
         cert = cd[i]
         print("Cert ID: ", cert.get('certId'))
-        global cert2id_map, id2cert_map, country_bitmap, sex_bitmap
         cert2id_map[cert.get('certId')] = i
         id2cert_map[i] = cert.get('certId')
         for country in cert.get('countries'):
             if country not in country_bitmap:
-                bit_map = []
+                bit_map = np.zeros(len(cd), dtype=bool)
                 bit_map[i] = True
                 country_bitmap[country] = bit_map
             else:
@@ -40,7 +41,7 @@ def cert_cache():
                 country_bitmap[country] = bit_map
         for sex in cert.get('sexs'):
             if sex not in sex_bitmap:
-                bit_map = []
+                bit_map = np.zeros(len(cd), dtype=bool)
                 bit_map[i] = True
                 sex_bitmap[i] = bit_map
             else:
