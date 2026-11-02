@@ -10,16 +10,19 @@ sudo apt install python3-venv
 # Check if venv is activated
 python3 -c "import sys; print(sys.executable)"
 
-# Activate venv
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate virtual environment
 source .venv/bin/activate
 
-# Deactivate venv
+# Deactivate virtual environment
 deactivate
 
-# Install packages in venv
+# Install pip packages in virtual environment or globally (on Windows)
 pip install requests
 
-# Check if packages are installed
+# Check if pip packages are installed
 pip list
 pip show requests
 

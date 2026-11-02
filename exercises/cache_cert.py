@@ -18,11 +18,11 @@ def menu():
     #test()
 
 cert2id_map, id2cert_map = {}, {}
-country_bitmap, sex_bitmap = {}, {}
+country_bitmaps, sex_bitmaps = {}, {}
 
 def cert_cache():
     print("==== Cert cache demo ====")
-    global cert2id_map, id2cert_map, country_bitmap, sex_bitmap
+    global cert2id_map, id2cert_map, country_bitmaps, sex_bitmaps
     #cd = cert_data(True)
     cd = cert_data()
     for i in range(len(cd)):
@@ -31,31 +31,31 @@ def cert_cache():
         cert2id_map[cert.get('certId')] = i
         id2cert_map[i] = cert.get('certId')
         for country in cert.get('countries'):
-            if country not in country_bitmap:
+            if country not in country_bitmaps:
                 bit_map = np.zeros(len(cd), dtype=bool)
                 bit_map[i] = True
-                country_bitmap[country] = bit_map
+                country_bitmaps[country] = bit_map
             else:
-                bit_map = country_bitmap[country]
+                bit_map = country_bitmaps[country]
                 bit_map[i] = True
-                country_bitmap[country] = bit_map
+                country_bitmaps[country] = bit_map
         for sex in cert.get('sexs'):
-            if sex not in sex_bitmap:
+            if sex not in sex_bitmaps:
                 bit_map = np.zeros(len(cd), dtype=bool)
                 bit_map[i] = True
-                sex_bitmap[i] = bit_map
+                sex_bitmaps[sex] = bit_map
             else:
-                bit_map = sex_bitmap[sex]
+                bit_map = sex_bitmaps[sex]
                 bit_map[i] = True
-                sex_bitmap[sex] = bit_map
+                sex_bitmaps[sex] = bit_map
     print()
     print("Cert to ID map: ", cert2id_map)
     print()
     print("ID to Cert map: ", id2cert_map)
     print()
-    print("Country to Cert map: ", country_bitmap)
+    print("Country to Cert map: ", country_bitmaps)
     print()
-    print("Sex to Cert map: ", sex_bitmap)
+    print("Sex to Cert map: ", sex_bitmaps)
 
 
 def cert_data(debug = False):
