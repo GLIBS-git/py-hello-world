@@ -19,24 +19,38 @@ def menu():
     startCaching = datetime.datetime.now()
     cert_cache()
     print("Elapsed time caching: ", datetime.datetime.now() - startCaching)
-    startSearching = datetime.datetime.now()
-    cert_test("US", "M")
     print()
+    startSearching = datetime.datetime.now()
+    certList = cert_test("US", "M")
     print("Elapsed time searching: ", datetime.datetime.now() - startSearching)
+    print()
+    startOutput = datetime.datetime.now()
+    certList = cert_output(certList)
+    print("Elapsed time output: ", datetime.datetime.now() - startOutput)
+    print()
     print("Elapsed time total: ", datetime.datetime.now() - start)
 
 cert2id_map, id2cert_map = {}, {}
 country_bitmaps, sex_bitmaps = {}, {}
 
+def cert_output(certList):
+    print("==== Test cert output ====")
+    for i in range(len(certList)):
+        certId = id2cert_map.get(i)
+        print("Cert ID: ", certId)
+
 def cert_test(country, sex):
     print("==== Test cert search ====")
+    ret = []
     counrty_bitmap = country_bitmaps.get(country)
     sex_bitmap = sex_bitmaps.get(sex)
     certList = counrty_bitmap & sex_bitmap
     for i in range(len(certList)):
         if certList[i]:
-            certId = id2cert_map.get(i)
-            print("Cert ID: ", certId)
+            ret.append(i)
+            #certId = id2cert_map.get(i)
+            #print("Cert ID: ", certId)
+    return ret
 
 def cert_cache(debug = False):
     if debug:
