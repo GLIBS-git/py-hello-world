@@ -28,6 +28,16 @@ def stock_service_sql_connection_string():
         'MultiSubnetFailover=yes'
     )
 
+def test_db_sql_connection_string():
+    return (
+        'Driver={ODBC Driver 17 for SQL Server};'
+        'Server=ServerName;'
+        'Database=DbName;'
+        'Trusted_Connection=yes;'
+        'Encrypt=yes;'
+        'TrustServerCertificate=yes;'
+        'Application Name=Glibs Python demo scripts;'
+    )
 
 
 
