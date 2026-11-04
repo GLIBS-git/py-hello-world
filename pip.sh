@@ -20,6 +20,8 @@ source .venv/bin/activate
 deactivate
 
 # Install pip packages in virtual environment or globally (on Windows)
+pip install numpy
+pip install pyobdc
 pip install requests
 
 # Check if pip packages are installed
