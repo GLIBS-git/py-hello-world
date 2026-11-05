@@ -14,7 +14,8 @@ def main(_args):
 def menu():
     glibs_tools.clear_console()    
     #read_ms_sql()
-    read_ms_sql_2()
+    #read_ms_sql_2()
+    read_ms_sql_3()
     #test()
 
 def read_ms_sql():
@@ -43,6 +44,18 @@ def read_ms_sql_2():
             print(f"{i}: {row}")
     print(f"Time taken: {datetime.datetime.now() - start}")
 
+def read_ms_sql_3():
+    print("==== Reading MS SQL batch records ====")
+    start = datetime.datetime.now()
+    with pyodbc.connect(secrets.test_db_sql_connection_string()) as conn:
+        query = "SELECT * FROM [Product];"
+        cursor = conn.cursor()
+        cursor.execute(query)
+        i = 0
+        for row in cursor:
+            i +=1
+            print(f"{i}: {row}")
+    print(f"Time taken: {datetime.datetime.now() - start}")
 
 
 
