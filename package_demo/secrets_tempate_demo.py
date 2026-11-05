@@ -16,7 +16,7 @@ def client_id_1s(legal_entity):
     else: 
         raise ValueError(f"Unknown legal entity: {legal_entity}!")
 
-def stock_service_sql_connection_string():
+def stock_service_sql_odbc_connection_string():
     return (
         'Driver={ODBC Driver 17 for SQL Server};'
         'Server=ServerName;'
@@ -28,7 +28,7 @@ def stock_service_sql_connection_string():
         'MultiSubnetFailover=yes'
     )
 
-def test_db_sql_connection_string():
+def test_db_sql_odbc_connection_string():
     return (
         'Driver={ODBC Driver 17 for SQL Server};'
         'Server=ServerName;'
