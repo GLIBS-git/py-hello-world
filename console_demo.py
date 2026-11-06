@@ -10,9 +10,10 @@ def main(_args):
 
 def menu():
     glibs_tools.clear_console()    
-    demo_print()
+    #demo_print()
     #demo_print_sys_names()
     #demo_input()
+    demo_print_streams()
     #test()
 
 def demo_print():
@@ -41,7 +42,13 @@ def demo_input():
     print("==== Demo of console input ====")
     inp = input("Enter text: ")
     print()
-    print(inp)
+    print(f"You entered: {inp}")
+
+def demo_print_streams():
+    print("==== Demo of print streams ====")
+    print("This goes to stdout")
+    print("This goes to stderr", file=sys.stderr)
+
 
 
 
