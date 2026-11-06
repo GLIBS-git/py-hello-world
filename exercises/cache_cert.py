@@ -56,10 +56,11 @@ def cert_cache(debug = False):
     if debug:
         print("==== Build cert cache ====")
     global cert2id_map, id2cert_map, country_bitmaps, sex_bitmaps
+    cd = []
     #cd = cert_data(True)
     cd = cert_data()
     for i in range(len(cd)):
-        cert = cd[i]
+        cert = dict(cd[i])
         if debug:
             print("Cert ID: ", cert.get('certId'))
         cert2id_map[cert.get('certId')] = i
