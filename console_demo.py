@@ -18,17 +18,16 @@ def menu():
 
 def demo_print():
     print("==== Demo of 'print' ====")
-    print("Hello world!")
-    print(2 * 2)
-    print(f"2 * 2 = {2 * 2}")
-    print("123", "789", sep=" ", end=" ")
-    print("456")
+    print("Hello world!") # Hello world!
+    print(2 * 2) # 4
+    print(f"2 * 2 = {2 * 2}") # 2 * 2 = 4
+    print("123", "789", sep=" ", end=" "); print("456") # 123 789 456
     path = r"D:\Python\Source" # D:\Python\Source, but D:\Python\Source\ not working, because the last backslash is an escape character, so it needs to be escaped with another backslash or use raw string.
-    print(path)
-    print(1); print(2); print(3) # This way is possible
-    print("Value 1: {}.    Value 2: {}.    Value 3: {}.".format(1, 2, 3)) # Formatting a string
+    print(path) # D:\Python\Source
+    print(1); print(2); print(3) # This way is possible: 1\n2\n3
+    print("Value 1: {}.    Value 2: {}.    Value 3: {}.".format(1, 2, 3)) # Formatting a string: Value 1: 1.    Value 2: 2.    Value 3: 3.
     print ("Text 1 " \
-        "Text 2") # Printing multiline text. No spaces after "\"!
+        "Text 2") # Printing multiline text. No spaces after "\"! : Text 1 Text 2
 
 def demo_print_sys_names():
     print("==== Demo of system names ====")
