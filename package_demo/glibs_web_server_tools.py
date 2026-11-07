@@ -15,7 +15,7 @@ def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 40
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_text: str): # Status 200 JSON
     handler.send_response(200)
-    handler.send_header('Content-type', 'text/plain; charset=utf-8')
+    handler.send_header('Content-type', 'application/json; charset=utf-8')
     handler.end_headers()
     handler.wfile.write(json.dumps(resp_text, ensure_ascii=False).encode('utf-8'))
 
