@@ -3,7 +3,7 @@
 '''
 #!/usr/bin/python3
 import asyncio
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import datetime
 import sys
 import time
@@ -12,7 +12,7 @@ def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     #demo_types()
     #demo_string()
     #demo_string_functions()

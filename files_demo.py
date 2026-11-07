@@ -3,7 +3,7 @@
 '''
 #!/usr/bin/python3
 #from ast import If
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import os
 import sys
 
@@ -11,7 +11,7 @@ def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     #demo_files()
     demo_files_2()
     #test()

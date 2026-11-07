@@ -1,5 +1,5 @@
 '''
-    Glibs Python scripts tools
+    Glibs Python scripts base tools
 '''
 #!/usr/bin/python3
 import os
@@ -12,20 +12,14 @@ def main(_args):
 
 def menu():
     clear_console()    
-    test()
+    #test()
 
 def clear_console():
     if os.name == "nt":
         subprocess.run(["cmd", "/c", "cls"], check=False)
     else:
         subprocess.run(["clear"], check=False)
-        
-class UrlParcer():
-    def __init__(self, url: str):
-        self.parsed_url = urlparse(url)
-        self.path = unquote(self.parsed_url.path)
-        self.path_list = self.path.split('/')
-        self.query_params = parse_qs(self.parsed_url.query)
+
 
 
 

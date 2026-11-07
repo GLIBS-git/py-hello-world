@@ -3,7 +3,7 @@
 '''
 #!/usr/bin/python3
 import json
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import package_demo.secrets_demo as secrets
 import requests
 import sys
@@ -13,7 +13,7 @@ def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     read_gtd_lines(legal_entity="RGM", gtd_id="Гтд0017612")
     #test()
 

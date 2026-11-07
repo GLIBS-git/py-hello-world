@@ -2,14 +2,14 @@
     Console demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import sys
 
 def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     #demo_print()
     #demo_print_sys_names()
     #demo_input()

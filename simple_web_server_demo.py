@@ -3,14 +3,14 @@
 '''
 #!/usr/bin/python3
 from http.server import HTTPServer, SimpleHTTPRequestHandler, ThreadingHTTPServer
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import sys
 
 def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     #simpleWebServer()
     simpleWebServer_2()
     #test()

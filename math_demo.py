@@ -3,7 +3,7 @@
 '''
 #!/usr/bin/python3
 from decimal import Decimal, ROUND_HALF_UP
-import package_demo.glibs_tools as glibs_tools
+import package_demo.glibs_base_tools as glibs_base_tools
 import random
 import sys
 
@@ -11,7 +11,7 @@ def main(_args):
     menu()
 
 def menu():
-    glibs_tools.clear_console()    
+    glibs_base_tools.clear_console()    
     #demo_arythmetic()
     #demo_decimal()
     #demo_random()
