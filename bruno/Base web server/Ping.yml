@@ -1,0 +1,20 @@
+info:
+  name: Ping
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{url}}/ping?delay=3"
+  params:
+    - name: delay
+      value: "3"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

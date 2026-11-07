@@ -1,0 +1,10 @@
+info:
+  name: Base web server
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+  variables:
+    - name: url
+      value: http://localhost:5050
