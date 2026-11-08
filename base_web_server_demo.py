@@ -23,8 +23,10 @@ def baseWebServer():
     class BaseHandler(web_tools.RestApiHttpHandler):
         def do_GET(self):
             self.init(doLog=True)
+            # GET /
             if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
                 web_tools.response_ok(self, "Welcome to glibs py-hello-world base REST API web service!")
+            # GET /ping
             elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
                 delay = 0
                 if 'delay' in self.urlParser.query_params:
@@ -40,6 +42,7 @@ def baseWebServer():
                 web_tools.response_notFound(self, 'GET')
         def do_POST(self):
             self.init(doLog=True)
+            # POST /shutdown
             if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "shutdown":
                 web_tools.response_ok(self, {"message": "Shutting down glibs py-hello-world base REST API web service..."})
                 # Run shutdown() in another thread to avoid a deadlock
