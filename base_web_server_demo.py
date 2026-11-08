@@ -2,9 +2,10 @@
     Base Web server demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, HTTPServer
 import package_demo.glibs_base_tools as base_tools
 import package_demo.glibs_web_server_tools as web_tools
+import os
 import sys
 import time
 import threading
@@ -38,6 +39,9 @@ def baseWebServer():
                 if (delay > 0):
                     time.sleep(delay)
                 web_tools.response_ok(self, {"pingResult": "glibs py-hello-world base REST API web service is alive!"})
+            # GET /pwd
+            elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "pwd":
+                web_tools.response_ok(self, {"currentDirectory": os.getcwd()})
             else:
                 web_tools.response_notFound(self, 'GET')
         def do_POST(self):

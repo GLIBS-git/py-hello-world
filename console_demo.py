@@ -11,7 +11,6 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     #demo_print()
-    #demo_print_sys_names()
     #demo_input()
     demo_print_streams()
     #test()
@@ -28,14 +27,6 @@ def demo_print():
     print("Value 1: {}.    Value 2: {}.    Value 3: {}.".format(1, 2, 3)) # Formatting a string: Value 1: 1.    Value 2: 2.    Value 3: 3.
     print ("Text 1 " \
         "Text 2") # Printing multiline text. No spaces after "\"! : Text 1 Text 2
-
-def demo_print_sys_names():
-    print("==== Demo of system names ====")
-    print(__name__) # Prints the name of the current module
-    print(__file__) # Prints the path of the current module
-    #print(__package__) # Prints the package of the current module
-    print(sys.platform) # Prints the platform (e.g., win32, linux, darwin)
-    print(sys.version) # Prints the Python version
 
 def demo_input():
     print("==== Demo of console input ====")

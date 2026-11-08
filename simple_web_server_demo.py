@@ -17,7 +17,7 @@ def menu():
 
 def simpleWebServer():
     print("==== Simple Web Server ====")
-    server = HTTPServer(('localhost', 5050), SimpleHTTPRequestHandler)
+    server = HTTPServer(('localhost', 5050), SimpleHTTPRequestHandler) # HTTPServer does not support multithreading, so it can only handle one request at a time. Use ThreadingHTTPServer for multithreading.
     print("Starting simple static file web server at http://localhost:5050")
     try:
         server.serve_forever()
@@ -28,7 +28,7 @@ def simpleWebServer():
 
 def simpleWebServer_2():
     print("==== Threaded Web Server ====")
-    server = ThreadingHTTPServer(('localhost', 5050), SimpleHTTPRequestHandler)
+    server = ThreadingHTTPServer(('localhost', 5050), SimpleHTTPRequestHandler) # ThreadingHTTPServer supports multithreading, so it can handle multiple requests simultaneously.
     print("Starting threaded web server at http://localhost:5050")
     try:
         server.serve_forever()

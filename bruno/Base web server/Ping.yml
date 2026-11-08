@@ -5,11 +5,16 @@ info:
 
 http:
   method: GET
-  url: "{{url}}/ping?delay=3"
+  url: "{{url}}/ping"
   params:
     - name: delay
       value: "3"
       type: query
+      disabled: true
+    - name: delay
+      value: "120"
+      type: query
+      disabled: true
   auth: inherit
 
 settings:
