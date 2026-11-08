@@ -24,11 +24,7 @@ def baseWebServer():
         def do_GET(self):
             self.init(doLog=True)
             if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
-                self.send_response(200)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                self.wfile.write(b"Welcome to glibs py-hello-world base REST API web service!")
-                print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
+                web_tools.response_ok(self, "Welcome to glibs py-hello-world base REST API web service!")
             elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
                 delay = 0
                 if 'delay' in self.urlParser.query_params:
@@ -39,33 +35,17 @@ def baseWebServer():
                             delay = int(delay_str)
                 if (delay > 0):
                     time.sleep(delay)
-                self.send_response(200)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                self.wfile.write(b"glibs py-hello-world base REST API web service is alive!")
-                print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
+                web_tools.response_ok(self, {"pingResult": "glibs py-hello-world base REST API web service is alive!"})
             else:
-                self.send_response(404)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                self.wfile.write(f"Endpoint '{self.path}' is not supported!".encode())
-                print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
+                web_tools.response_notFound(self, 'GET')
         def do_POST(self):
             self.init(doLog=True)
             if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "shutdown":
+                web_tools.response_ok(self, {"message": "Shutting down glibs py-hello-world base REST API web service..."})
                 # Run shutdown() in another thread to avoid a deadlock
                 threading.Thread(target=self.server.shutdown, daemon=True).start()   
-                self.send_response(200)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                self.wfile.write(b"Shutting down glibs py-hello-world base REST API web service...")
-                print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
             else:
-                self.send_response(404)
-                self.send_header('Content-type', 'text/html')
-                self.end_headers()
-                self.wfile.write(f"Endpoint '{self.path}' is not supported!".encode())
-                print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
+                web_tools.response_notFound(self, 'POST')
 
     server = ThreadingHTTPServer(('localhost', 5050), BaseHandler)
     print("Starting threaded web server at http://localhost:5050")
