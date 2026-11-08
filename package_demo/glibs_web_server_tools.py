@@ -32,6 +32,28 @@ class UrlParcer():
         self.path_list = self.path.split('/')
         self.query_params = parse_qs(self.parsed_url.query)
 
+class RestApiHttpHandler(BaseHTTPRequestHandler):
+    def init(self, doLog=False):
+        self.urlParser = UrlParcer(self.path)
+        if doLog:
+            print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
+    def doGet(self, doLog=False):
+        response_notFound(self, 'GET')
+    def doPost(self, doLog=False):
+        response_notFound(self, 'POST')
+    def doPut(self, doLog=False):
+        response_notFound(self, 'PUT')
+    def doDelete(self, doLog=False):
+        response_notFound(self, 'DELETE')
+
+
+
+
+
+
+
+
+
 
 
 

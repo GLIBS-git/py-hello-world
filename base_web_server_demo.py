@@ -17,32 +17,22 @@ def menu():
     baseWebServer()
     #test()
 
-class BaseHandlerBase_Glibs(BaseHTTPRequestHandler):
-    def doGet(self):
-        web_tools.response_notFound(self, 'GET')
-    def doPost(self):
-        web_tools.response_notFound(self, 'POST')
-    def doPut(self):
-        web_tools.response_notFound(self, 'PUT')
-    def doDelete(self):
-        web_tools.response_notFound(self, 'DELETE')
-
 def baseWebServer():
     print("==== Base Web Server ====")
 
-    class BaseHandler(BaseHTTPRequestHandler):
+    class BaseHandler(web_tools.RestApiHttpHandler):
         def do_GET(self):
-            url_parcer = web_tools.UrlParcer(self.path)
-            if len(url_parcer.path_list) == 2 and url_parcer.path_list[1].lower() == "":
+            self.init(doLog=True)
+            if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
                 self.end_headers()
                 self.wfile.write(b"Welcome to glibs py-hello-world base REST API web service!")
                 print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
-            elif len(url_parcer.path_list) == 2 and url_parcer.path_list[1].lower() == "ping":
+            elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
                 delay = 0
-                if 'delay' in url_parcer.query_params:
-                    delay_arr = url_parcer.query_params['delay']
+                if 'delay' in self.urlParser.query_params:
+                    delay_arr = self.urlParser.query_params['delay']
                     if len(delay_arr) > 0:
                         delay_str = delay_arr[0]
                         if delay_str.isdigit():
@@ -61,8 +51,8 @@ def baseWebServer():
                 self.wfile.write(f"Endpoint '{self.path}' is not supported!".encode())
                 print(f"Request: {self.command} {self.path} from {self.client_address[0]}:{self.client_address[1]}")
         def do_POST(self):
-            url_parcer = web_tools.UrlParcer(self.path)
-            if len(url_parcer.path_list) == 2 and url_parcer.path_list[1].lower() == "shutdown":
+            self.init(doLog=True)
+            if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "shutdown":
                 # Run shutdown() in another thread to avoid a deadlock
                 threading.Thread(target=self.server.shutdown, daemon=True).start()   
                 self.send_response(200)

@@ -12,7 +12,8 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     #demo_json_encode_decode()
-    demo_json_encode_complex()
+    #demo_json_encode_complex()
+    demo_json_encode_text()
     #test()
 
 def demo_json_encode_decode():
@@ -20,7 +21,7 @@ def demo_json_encode_decode():
     js = {"name": "John", "age": 30, "city": "New York"}
     print(type(js))
     print(js) 
-    js_str = json.dumps(js, ensure_ascii=False, indent = 2) # Indent -- human readable format. Default ensure_ascii=True escapas all UNICODE symbols.
+    js_str = json.dumps(js, ensure_ascii=False, indent=2) # Indent -- human readable format. Default ensure_ascii=True escapas all UNICODE symbols.
     print(js_str)
     js_2 = json.loads(js_str)
     print(type(js_2))
@@ -59,8 +60,13 @@ def demo_json_encode_complex():
     }    
     print(type(js))
     print(js) 
-    js_str = json.dumps(js, ensure_ascii=False, indent = 2) # Indent -- human readable format
+    js_str = json.dumps(js, ensure_ascii=False, indent=2) # Indent -- human readable format
     print(js_str)
+
+def demo_json_encode_text(): # JSON specification supports such format
+    print("==== Just text JSON encode ====")
+    js_str = json.dumps("Hello, World!", ensure_ascii=False, indent=2)
+    print(js_str) # "Hello, World!"
 
 
 

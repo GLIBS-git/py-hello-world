@@ -13,12 +13,12 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
-    #demo_types()
+    demo_types()
     #demo_string()
     #demo_string_functions()
     #demo_string_formatting()
     #demo_dates()
-    demo_binary()
+    #demo_binary()
     #test()
 
 def demo_types():
@@ -36,6 +36,23 @@ def demo_types():
     d = "4a5b6"
     #print(int(d)) # This will raise a ValueError because the string contains non-numeric characters
     print(d.isdigit()) # False, because the string contains non-numeric characters
+    e = "123456"
+    print(e.isdigit()) # True, because the string contains only numeric characters
+    print(e.isnumeric()) # True, because the string contains only numeric characters
+    print(e.isdecimal()) # True, because the string contains only decimal characters
+    # ! ! ! .isdigit() returns True only if the string contains only digits and is not empty. It does not consider decimal points, negative signs, or any other characters as digits.
+    e = "123.456"
+    print(e.isdigit()) # False, because the string contains a decimal point 
+    print(e.isnumeric()) # False, because the string contains a decimal point
+    print(e.isdecimal()) # False, because the string contains a decimal point
+    e = "-123456"
+    print(e.isdigit()) # False, because the string contains a negative sign
+    print(e.isnumeric()) # False, because the string contains a negative sign
+    print(e.isdecimal()) # False, because the string contains a negative sign
+    e = "1/2"
+    print(e.isdigit()) # False, because the string contains a fraction
+    print(e.isnumeric()) # False, because the string contains a fraction
+    print(e.isdecimal()) # False, because the string contains a fraction
     x = None # NULL type
     print(x) # None
 

@@ -4,15 +4,6 @@
 #!/usr/bin/python3
 import os
 import subprocess
-import sys
-from urllib.parse import urlparse, parse_qs, unquote
-
-def main(_args):
-    menu()
-
-def menu():
-    clear_console()    
-    #test()
 
 def clear_console():
     if os.name == "nt":
@@ -20,17 +11,35 @@ def clear_console():
     else:
         subprocess.run(["clear"], check=False)
 
+def str2num(s: str, default=None):
+    try:
+        return int(s)
+    except ValueError:
+        try:
+            return float(s)
+        except ValueError:
+            return default
+
+def try_parse_int(s: str, default=None):
+    try:
+        return int(s)
+    except ValueError:
+        return default
+
+def try_parse_float(s: str, default=None):
+    try:
+        return float(s)
+    except ValueError:
+        return default
 
 
 
 
-def test():
-    print("==== Test ====")
 
 
-if __name__ == "__main__": # This will run if the script was run directly, not called as the module
-    main(sys.argv)
-    sys.exit() # Stops the script
+
+
+
 
 
 
