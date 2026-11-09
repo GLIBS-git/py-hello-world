@@ -33,10 +33,10 @@ def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 20
 
 class UrlParcer():
     def __init__(self, url: str):
-        self.parsed_url = urlparse(url)
-        self.path = unquote(self.parsed_url.path)
-        self.path_list = self.path.split('/')
-        self.query_params = parse_qs(self.parsed_url.query)
+        self.parsed_url = urlparse(url) # URL to ubject with path and query parameters
+        self.path = unquote(self.parsed_url.path) # Decoding encoded symbols like %20 to spaces from the URL path without query parameters
+        self.path_list = self.path.split('/') # List of path segments, e.g. /api/v1/resource -> ["", "api", "v1", "resource"]
+        self.query_params = parse_qs(self.parsed_url.query) # Dictionary of query parameters
 
 class RestApiHttpHandler(BaseHTTPRequestHandler):
     def init(self, doLog=False):

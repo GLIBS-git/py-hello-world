@@ -2,7 +2,7 @@
     Base Web server demo Glibs Python scripts
 '''
 #!/usr/bin/python3
-from http.server import ThreadingHTTPServer, HTTPServer
+from http.server import ThreadingHTTPServer
 import package_demo.glibs_base_tools as base_tools
 import package_demo.glibs_web_server_tools as web_tools
 import os
