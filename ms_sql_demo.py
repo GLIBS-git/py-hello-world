@@ -13,6 +13,7 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
+    # Uncomment the test you want to run:
     #read_ms_sql()
     #read_ms_sql_2()
     #read_ms_sql_3()

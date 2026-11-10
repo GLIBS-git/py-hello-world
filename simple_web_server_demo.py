@@ -11,6 +11,7 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
+    # Uncomment the test you want to run:
     #simpleWebServer()
     simpleWebServer_2()
     #test()

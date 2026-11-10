@@ -11,6 +11,7 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
+    # Uncomment the test you want to run:
     #demo_json_encode_decode()
     #demo_json_encode_complex()
     demo_json_encode_text()

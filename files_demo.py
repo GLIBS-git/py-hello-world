@@ -12,6 +12,7 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
+    # Uncomment the test you want to run:
     #demo_files()
     demo_files_2()
     #test()

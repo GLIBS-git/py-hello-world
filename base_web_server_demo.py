@@ -15,6 +15,7 @@ def main(_args):
 
 def menu():
     base_tools.clear_console()    
+    # Uncomment the test you want to run:
     baseWebServer()
     #test()
 

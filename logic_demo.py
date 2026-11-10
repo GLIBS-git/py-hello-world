@@ -11,6 +11,7 @@ def main(_args):
 
 def menu():
     clear_console()    
+    # Uncomment the test you want to run:
     #demo_logic_operators()
     #demo_logic_if()
     demo_logic_if_ternary()

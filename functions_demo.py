@@ -3,16 +3,8 @@
 '''
 #!/usr/bin/python3
 import collections_demo
-import console_demo
 import package_demo.glibs_base_tools as glibs_base_tools
-import json_demo
-import logic_demo
-#import math_demo as md # May be aliased
-import math_demo
-import os
 import sys
-import subprocess
-import types_demo
 
 def main(_args):
     menu()

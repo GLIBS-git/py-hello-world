@@ -14,6 +14,7 @@ def main(_args):
 
 def menu():
     glibs_base_tools.clear_console()    
+    # Uncomment the test you want to run:
     read_gtd_lines(legal_entity="RGM", gtd_id="Гтд0017612")
     #test()
 
