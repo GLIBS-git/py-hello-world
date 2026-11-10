@@ -66,6 +66,11 @@ def demo_json_encode_complex():
 def demo_json_encode_text(): # JSON specification supports such format
     print("==== Just text JSON encode ====")
     js_str = json.dumps("Hello, World!", ensure_ascii=False, indent=2)
+    # Without quotes, this is not a valid JSON format. But it is a valid JSON value. The JSON specification allows for any valid JSON value 
+    # to be encoded as a JSON string, including strings, numbers, booleans, null, arrays, and objects. However, when encoding a string as a JSON 
+    # value, it must be enclosed in double quotes. If you want to encode a string as a JSON value without quotes, you can use the `json.dumps()` 
+    # function with the `ensure_ascii=False` parameter set to `True`. This will encode the string as a JSON value without quotes. However, this is 
+    # not recommended as it may lead to confusion and errors when decoding the JSON value later on.
     print(js_str) # "Hello, World!"
 
 
