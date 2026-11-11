@@ -12,11 +12,11 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     # Uncomment the test you want to run:
-    #simpleWebServer()
-    simpleWebServer_2()
+    #runSimpleWebServer()
+    runSimpleWebServer_2()
     #test()
 
-def simpleWebServer():
+def runSimpleWebServer():
     print("==== Simple Web Server ====")
     server = HTTPServer(('localhost', 5050), SimpleHTTPRequestHandler) # HTTPServer does not support multithreading, so it can only handle one request at a time. Use ThreadingHTTPServer for multithreading.
     print("Starting simple static file web server at http://localhost:5050")
@@ -27,7 +27,7 @@ def simpleWebServer():
     finally:
         server.server_close()  # Close the server socket
 
-def simpleWebServer_2():
+def runSimpleWebServer_2():
     print("==== Threaded Web Server ====")
     server = ThreadingHTTPServer(('localhost', 5050), SimpleHTTPRequestHandler) # ThreadingHTTPServer supports multithreading, so it can handle multiple requests simultaneously.
     print("Starting threaded web server at http://localhost:5050")

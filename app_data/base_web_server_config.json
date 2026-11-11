@@ -1,0 +1,6 @@
+{
+    "webServerAddress": {
+        "host": "localhost",
+        "port": 5050
+    }
+}
