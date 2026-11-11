@@ -2,6 +2,7 @@
     Threading & async/await demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import asyncio
 import package_demo.glibs_base_tools as glibs_base_tools
 import sys
 
@@ -15,6 +16,11 @@ def menu():
 
 def demo_async_io(): # Take info from Claude
     print("==== Demo async/await ====")
+    async def xSleep(s):
+        await asyncio.sleep(s) # Seconds
+    asyncio.run(xSleep(0.3))
+    asyncio.run(asyncio.sleep(0.3))
+
 
 def demo_threading(): # Take info from Claude
     print("==== Demo threading ====")

@@ -2,13 +2,14 @@
     Base Web server demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import asyncio
+import datetime
 from http.server import ThreadingHTTPServer
+import os
 import package_demo.glibs_base_tools as base_tools
 import package_demo.glibs_web_server_tools as web_tools
 from pathlib import Path
-import os
 import sys
-import time
 import threading
 
 class BaseHandler(web_tools.RestApiHttpHandler):
@@ -17,6 +18,12 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         # GET /
         if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
             web_tools.response_ok(self, "Welcome to glibs py-hello-world base REST API web service!")
+        # GET /help
+        elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "help":
+            helpPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_help.json")
+            helpFile = base_tools.ApplicationConfig(helpPath)
+            helpText = helpFile.get("endpointList", "No help text found in the help file.")
+            web_tools.response_text(self, str(helpText))
         # GET /ping
         elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
             delay = 0
@@ -27,14 +34,19 @@ class BaseHandler(web_tools.RestApiHttpHandler):
                     if delay_str.isdigit():
                         delay = int(delay_str)
             if (delay > 0):
-                time.sleep(delay)
+                asyncio.run(asyncio.sleep(delay))
             web_tools.response_ok(self, {"pingResult": "glibs py-hello-world base REST API web service is alive!"})
         # GET /pwd
         elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "pwd":
             web_tools.response_ok(self, {"currentDirectory": os.getcwd()})
         # GET /sys-info
         elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "sys-info":
-            web_tools.response_ok(self, {"programFile": __file__})
+            sysInfo = {
+                "platform": sys.platform,
+                "pythonVersion": sys.version,
+                "executable": sys.executable,
+                "scriptPath": __file__,}
+            web_tools.response_ok(self, {"sysInfo": sysInfo})
         else:
             web_tools.response_notFound(self, 'GET')
     def do_POST(self):
@@ -48,19 +60,22 @@ class BaseHandler(web_tools.RestApiHttpHandler):
             web_tools.response_notFound(self, 'POST')
 
 def runBaseWebServer():
-    print("==== Base Web Server ====")
+    # Read application configuration from JSON file
     global appConfig
     confPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_config.json")
     appConfig = base_tools.ApplicationConfig(confPath)
-    serverAddr: dict = appConfig.get("webServerAddress", {"host": "localhost", "port": 5050})
+    serverAddr = appConfig.get("webServerAddress")
+    if not isinstance(serverAddr, dict):
+        serverAddr = {}
     serverHost = serverAddr.get("host", "localhost")
     serverPort = serverAddr.get("port", 5050)
+    # Start Web server
     server = ThreadingHTTPServer((serverHost, serverPort), BaseHandler)
-    print(f"Starting threaded web server at http://{serverHost}:{serverPort}")
+    print(f"{datetime.date.today()}: Starting threaded web server at http://{serverHost}:{serverPort}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print(); print("Stopping server.")
+        print(); print(f"{datetime.date.today()}: Stopping server.")
     finally:
         server.server_close()  # Close the server socket
 

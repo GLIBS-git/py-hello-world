@@ -14,11 +14,11 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     # Uncomment the test you want to run:
-    demo_types()
+    #demo_types()
     #demo_string()
     #demo_string_functions()
     #demo_string_formatting()
-    #demo_dates()
+    demo_dates()
     #demo_binary()
     #test()
 
@@ -109,22 +109,25 @@ def demo_string_formatting():
 
 def demo_dates():
     print("==== Demo of dates ====")
+    # import datetime
     dd = datetime.date.today()
-    print(dd)
+    print(dd) # 2026-11-12
     dt = datetime.datetime.today()
-    print(dt)
+    print(dt) # 2026-11-12 10:30:45.123456
     time.sleep(0.5) # Seconds
     dt_2 = datetime.datetime.today()
-    print(dt_2 - dt)
+    print(dt_2 - dt) # 0:00:00.500000
+    # import asyncio
     async def xSleep(s):
         await asyncio.sleep(s) # Seconds
     asyncio.run(xSleep(0.3))
+    asyncio.run(asyncio.sleep(0.3))
     dt_3 = datetime.datetime.today()
-    print(dt_3 - dt_2)
+    print(dt_3 - dt_2) # 0:00:00.300000
     dt_4 = datetime.datetime.strptime("01-01-2027 00:00:00", "%d-%m-%Y %H:%M:%S")
-    print(dt_4)
+    print(dt_4) # 2027-01-01 00:00:00
     dt_5 = datetime.datetime.strptime("01-01-27 00:00:00", "%d-%m-%y %H:%M:%S")
-    print(dt_5)
+    print(dt_5) # 2027-01-01 00:00:00
 
 def demo_binary():
     print("==== Demo of binary data ====")
