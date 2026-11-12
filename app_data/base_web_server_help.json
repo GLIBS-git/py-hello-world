@@ -1,0 +1,12 @@
+{
+    "endpointsList": [
+        "GET / -- Returns a welcome message.",
+        "GET /help -- Returns help information.",
+        "GET /ping -- Returns a ping result.",
+        "GET /ping?delay=2 -- Returns a ping result after a delay.",
+        "GET /pwd -- Returns the current directory.",
+        "GET /sys-info -- Returns system information.",
+        "",
+        "POST /shutdown -- Shuts down the web service."
+    ]
+}

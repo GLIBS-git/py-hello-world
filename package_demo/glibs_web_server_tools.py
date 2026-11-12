@@ -2,8 +2,12 @@
     Glibs Python scripts web server tools
 '''
 #!/usr/bin/python3
+#from package_demo.glibs_base_tools import ApplicationConfig
+from .glibs_base_tools import ApplicationConfig
 from http.server import BaseHTTPRequestHandler
 import json
+import os
+from pathlib import Path
 from urllib.parse import urlparse, parse_qs, unquote
 
 # Response processors
@@ -51,6 +55,23 @@ class RestApiHttpHandler(BaseHTTPRequestHandler):
         response_notFound(self, 'PUT')
     def doDelete(self, doLog=False):
         response_notFound(self, 'DELETE')
+
+class WebAppConfig():
+    def __init__(self, filePath: str, confFile: str):
+        self.filePath = filePath
+        if not os.path.exists(filePath):
+            raise FileNotFoundError(f"Base file '{filePath}' does not exist.")
+        self.confFile = confFile
+        confFile = str(Path(self.filePath).resolve().parent / self.confFile)
+        if not os.path.exists(confFile):
+            raise FileNotFoundError(f"Configuration file '{confFile}' does not exist.")
+
+    def load(self):
+        self.appConfig = ApplicationConfig(self.confFile)
+        serverAddr = self.appConfig.get("webServerAddress")
+        serverAddr = serverAddr if isinstance(serverAddr, dict) else {}
+        self.serverHost = serverAddr.get("host", "localhost")
+        self.serverPort = serverAddr.get("port", 5050)
 
 
 

@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 import threading
 
-appConfig = {}
+appConfig = web_tools.WebAppConfig(__file__, "app_data/base_web_server_config.json")
 
 class BaseHandler(web_tools.RestApiHttpHandler):
     def do_GET(self):
@@ -24,8 +24,10 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "help":
             helpPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_help.json")
             helpFile = base_tools.ApplicationConfig(helpPath)
-            helpText = helpFile.get("endpointList", "No help text found in the help file.")
-            web_tools.response_text(self, str(helpText))
+            helpCon = helpFile.get("endpointsList")
+            helpCon = helpCon if isinstance(helpCon, list) else []
+            helpText = "\n".join(helpCon) if helpCon else "No help content available!"
+            web_tools.response_text(self, helpText)
         # GET /ping
         elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
             delay = 0
@@ -60,19 +62,12 @@ class BaseHandler(web_tools.RestApiHttpHandler):
             threading.Thread(target=self.server.shutdown, daemon=True).start()   
         else:
             web_tools.response_notFound(self, 'POST')
-
+ 
 def runBaseWebServer():
-    # Read application configuration from JSON file
     global appConfig
-    confPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_config.json")
-    appConfig = base_tools.ApplicationConfig(confPath)
-    serverAddr = appConfig.get("webServerAddress")
-    serverAddr = serverAddr if isinstance(serverAddr, dict) else {}
-    serverHost = serverAddr.get("host", "localhost")
-    serverPort = serverAddr.get("port", 5050)
-    # Start Web server
-    server = ThreadingHTTPServer((serverHost, serverPort), BaseHandler)
-    print(f"{datetime.date.today()}: Starting threaded web server at http://{serverHost}:{serverPort}...")
+    appConfig.load()
+    server = ThreadingHTTPServer((appConfig.serverHost, appConfig.serverPort), BaseHandler)
+    print(f"{datetime.date.today()}: Starting threaded web server at http://{appConfig.serverHost}:{appConfig.serverPort}...")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -88,7 +83,6 @@ def main(_args):
 
 def test():
     print("==== Test ====")
-
 
 if __name__ == "__main__": # This will run if the script was run directly, not called as the module
     main(sys.argv)
