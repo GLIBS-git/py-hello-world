@@ -12,6 +12,8 @@ from pathlib import Path
 import sys
 import threading
 
+appConfig = {}
+
 class BaseHandler(web_tools.RestApiHttpHandler):
     def do_GET(self):
         self.init(doLog=True)
@@ -65,21 +67,18 @@ def runBaseWebServer():
     confPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_config.json")
     appConfig = base_tools.ApplicationConfig(confPath)
     serverAddr = appConfig.get("webServerAddress")
-    if not isinstance(serverAddr, dict):
-        serverAddr = {}
+    serverAddr = serverAddr if isinstance(serverAddr, dict) else {}
     serverHost = serverAddr.get("host", "localhost")
     serverPort = serverAddr.get("port", 5050)
     # Start Web server
     server = ThreadingHTTPServer((serverHost, serverPort), BaseHandler)
-    print(f"{datetime.date.today()}: Starting threaded web server at http://{serverHost}:{serverPort}")
+    print(f"{datetime.date.today()}: Starting threaded web server at http://{serverHost}:{serverPort}...")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print(); print(f"{datetime.date.today()}: Stopping server.")
+        print(); print(f"{datetime.date.today()}: Stopping server...")
     finally:
         server.server_close()  # Close the server socket
-
-appConfig = {}
 
 def main(_args):
     base_tools.clear_console()    
