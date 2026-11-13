@@ -223,12 +223,18 @@ def range_function():
         print(i) # Prints 0, 1, 2, 3, 4
     print(set(range(5))) # {0, 1, 2, 3, 4}
     print(list(range(5))) # [0, 1, 2, 3, 4]
+    print(list(range(5, 10))) # [5, 6, 7, 8, 9]
+    print(list(range(5, 10, 2))) # [5, 7, 9] - Step of 2
 
 def enumerate_function():
     print("==== Enumerate function ====")
     l = ["a", "b", "c"]
     for i, value in enumerate(l):
         print(i, value) # Prints each index-value pair in the list or any other iterable: 0 a\n1 b\n2 c
+    print(list(enumerate(l))) # [(0, 'a'), (1, 'b'), (2, 'c')]
+    print(dict(enumerate(l))) # {0: 'a', 1: 'b', 2: 'c'}
+    print(set(enumerate(l))) # {(0, 'a'), (1, 'b'), (2, 'c')}
+    print(list(enumerate("abc"))) # [(0, 'a'), (1, 'b'), (2, 'c')]
 
 
 
