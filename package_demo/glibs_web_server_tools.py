@@ -46,7 +46,6 @@ class UrlParcer():
 
 
 class RestApiHttpHandler(BaseHTTPRequestHandler):
-
     def init(self, doLog=False):
         self.urlParser = UrlParcer(self.path)
         if doLog:
@@ -66,7 +65,6 @@ class RestApiHttpHandler(BaseHTTPRequestHandler):
 
 
 class WebAppConfig():
-
     def __init__(self, filePath: str, confFile: str):
         self.filePath = filePath
         if not os.path.exists(filePath):

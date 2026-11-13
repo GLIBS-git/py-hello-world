@@ -17,8 +17,9 @@ def menu():
     #demo_types()
     #demo_string()
     #demo_string_functions()
-    #demo_string_formatting()
-    demo_dates()
+    #string_formatting()
+    string_prefixes()
+    #demo_dates()
     #demo_binary()
     #test()
 
@@ -100,12 +101,23 @@ def demo_string_functions():
     print("12345".isnumeric()) # True
     print("1a2b3".isnumeric()) # False
 
-def demo_string_formatting():
+def string_formatting():
     print("==== String formatting ====")
     print("P1: {}. P2: {}.".format("1", "2")) # P1: 1. P2: 2.
     print("P1: {0}. P2: {1}.".format("1", "2")) # P1: 1. P2: 2.
     #print("P1: {1}. P2: {2}.".format("1", "2")) # Out of array range exception! Parameter 0 & 1 exists, parameter 2 does not exist.
     print("P1: {0}. P2: {0}.".format("1", "2")) # P1: 1. P2: 1.
+
+def string_prefixes():
+    print("==== String prefixes ====")
+    print("Raw string: C:\python\name.txt") # Raw string: C:\python
+                                            # ame.txt
+    print(r"Raw string: C:\python\name.txt") # Raw string: C:\python\name.txt
+    print(f"Formatted string: {1+1}") # Formatted string: 2
+    b = b"Byte string: \x41\x42\x43" # Byte string: ABC
+    print(b)
+    print(type(b)) # <class 'bytes'>
+
 
 def demo_dates():
     print("==== Demo of dates ====")

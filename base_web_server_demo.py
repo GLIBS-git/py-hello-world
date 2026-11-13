@@ -17,7 +17,6 @@ appConfig = web_tools.WebAppConfig(__file__, "app_data/base_web_server_config.js
 
 
 class BaseHandler(web_tools.RestApiHttpHandler):
-    
     def do_GET(self):
         self.init(doLog=True)
         # GET /
