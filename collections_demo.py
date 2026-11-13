@@ -17,7 +17,8 @@ def menu():
     #demo_dictionaries()
     #demo_dictionaries_2()
     #demo_sets()
-    demo_sets_2()
+    #demo_sets_2()
+    enumerate_function()
     #test()
 
 def demo_lists():
@@ -216,6 +217,12 @@ def demo_sets_2():
     print({1,2,3}.issuperset({1,2})) # True - Checks if the first set is a superset of the second set
     s1 = frozenset({1, 2, 3, 4, 5}) # Frozen set
     print(s1) # frozenset({1, 2, 3, 4, 5})
+
+def enumerate_function():
+    print("==== Enumerate function ====")
+    l = ["a", "b", "c"]
+    for i, value in enumerate(l):
+        print(i, value) # Prints each index-value pair in the list or any other iterable: 0 a\n1 b\n2 c
 
 
 
