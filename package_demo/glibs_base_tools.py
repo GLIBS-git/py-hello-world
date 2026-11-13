@@ -6,6 +6,7 @@ import json
 import os
 import subprocess
 
+
 def clear_console():
     if os.name == "nt":
         subprocess.run(["cmd", "/c", "cls"], check=False)
@@ -33,7 +34,9 @@ def try_parse_float(s: str, default=None):
     except ValueError:
         return default
 
+
 class ApplicationConfig:
+
     def __init__(self, config_file_path: str):
         self.config_file_path = config_file_path
         self.config_data = {}
