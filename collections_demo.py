@@ -18,7 +18,8 @@ def menu():
     #demo_dictionaries_2()
     #demo_sets()
     #demo_sets_2()
-    enumerate_function()
+    range_function()
+    #enumerate_function()
     #test()
 
 def demo_lists():
@@ -80,8 +81,6 @@ def demo_lists_2():
     print(txt_l) # ['Test content 1!', 'Test content 2!', 'Test content 3!', 'Test content 4!', 'Test content 5!', 'Test content 6!', 'Test content 7!']
     txt_l = [f"Test content {i}!" for i in range(1, 8) if i % 2 == 0]
     print(txt_l) # ['Test content 2!', 'Test content 4!', 'Test content 6!']
-
-
 
 def demo_tuples(): # Immutable lists
     print("==== Tuples ====")
@@ -217,6 +216,13 @@ def demo_sets_2():
     print({1,2,3}.issuperset({1,2})) # True - Checks if the first set is a superset of the second set
     s1 = frozenset({1, 2, 3, 4, 5}) # Frozen set
     print(s1) # frozenset({1, 2, 3, 4, 5})
+
+def range_function():
+    print("==== Range function ====")
+    for i in range(5):
+        print(i) # Prints 0, 1, 2, 3, 4
+    print(set(range(5))) # {0, 1, 2, 3, 4}
+    print(list(range(5))) # [0, 1, 2, 3, 4]
 
 def enumerate_function():
     print("==== Enumerate function ====")
