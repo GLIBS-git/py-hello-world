@@ -12,9 +12,12 @@ from pathlib import Path
 import sys
 import threading
 
+
 appConfig = web_tools.WebAppConfig(__file__, "app_data/base_web_server_config.json")
 
+
 class BaseHandler(web_tools.RestApiHttpHandler):
+    
     def do_GET(self):
         self.init(doLog=True)
         # GET /
@@ -53,6 +56,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
             web_tools.response_ok(self, {"sysInfo": sysInfo})
         else:
             web_tools.response_notFound(self, 'GET')
+    
     def do_POST(self):
         self.init(doLog=True)
         # POST /shutdown
@@ -62,7 +66,8 @@ class BaseHandler(web_tools.RestApiHttpHandler):
             threading.Thread(target=self.server.shutdown, daemon=True).start()   
         else:
             web_tools.response_notFound(self, 'POST')
- 
+
+
 def runBaseWebServer():
     global appConfig
     appConfig.load()
@@ -83,6 +88,7 @@ def main(_args):
 
 def test():
     print("==== Test ====")
+
 
 if __name__ == "__main__": # This will run if the script was run directly, not called as the module
     main(sys.argv)
