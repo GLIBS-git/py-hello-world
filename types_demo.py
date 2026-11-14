@@ -118,7 +118,6 @@ def string_prefixes():
     print(b)
     print(type(b)) # <class 'bytes'>
 
-
 def demo_dates():
     print("==== Demo of dates ====")
     # import datetime
