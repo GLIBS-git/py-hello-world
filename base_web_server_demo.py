@@ -61,8 +61,8 @@ class BaseHandler(web_tools.RestApiHttpHandler):
     
     def do_POST(self):
         self.init(doLog=True)
-        # POST /shutdown
-        if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "shutdown":
+        # POST /api/shutdown
+        if len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "shutdown":
             web_tools.response_ok(self, {"message": f"{datetime.datetime.today()}: Shutting down glibs py-hello-world base REST API web service..."})
             # Run shutdown() in another thread to avoid a deadlock
             threading.Thread(target=self.server.shutdown, daemon=True).start()   

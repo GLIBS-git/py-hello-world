@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{url}}/shutdown"
+  url: "{{url}}/api/shutdown"
   auth: inherit
 
 settings:
