@@ -13,7 +13,7 @@ def menu():
     # Uncomment the test you want to run:
     #demo_print()
     #demo_input()
-    demo_print_streams()
+    streams()
     #test()
 
 def demo_print():
@@ -35,8 +35,8 @@ def demo_input():
     print()
     print(f"You entered: {inp}")
 
-def demo_print_streams():
-    print("==== Demo of print streams ====")
+def streams():
+    print("==== Demo of console streams ====")
     print("This goes to stdout")
     print("This goes to stderr", file=sys.stderr)
 
