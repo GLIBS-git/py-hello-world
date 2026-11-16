@@ -51,7 +51,10 @@ class BaseHandler(web_tools.RestApiHttpHandler):
                 "platform": sys.platform,
                 "pythonVersion": sys.version,
                 "executable": sys.executable,
-                "scriptPath": __file__,}
+                "scriptPath": __file__,
+                "serverStartTime": f"{appConfig.serverStartTime}",
+                "serverActiveTime": f"{(datetime.datetime.today() - appConfig.serverStartTime)}",
+            }
             web_tools.response_ok(self, {"sysInfo": sysInfo})
         else:
             web_tools.response_notFound(self, 'GET')
@@ -60,7 +63,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         self.init(doLog=True)
         # POST /shutdown
         if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "shutdown":
-            web_tools.response_ok(self, {"message": "Shutting down glibs py-hello-world base REST API web service..."})
+            web_tools.response_ok(self, {"message": f"{datetime.datetime.today()}: Shutting down glibs py-hello-world base REST API web service..."})
             # Run shutdown() in another thread to avoid a deadlock
             threading.Thread(target=self.server.shutdown, daemon=True).start()   
         else:
@@ -71,11 +74,12 @@ def runBaseWebServer():
     global appConfig
     appConfig.load()
     server = ThreadingHTTPServer((appConfig.serverHost, appConfig.serverPort), BaseHandler)
-    print(f"{datetime.date.today()}: Starting threaded web server at http://{appConfig.serverHost}:{appConfig.serverPort}...")
+    print(f"{datetime.datetime.today()}: Starting threaded web server at http://{appConfig.serverHost}:{appConfig.serverPort}...")
+    appConfig.serverStartTime = datetime.datetime.today()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print(); print(f"{datetime.date.today()}: Stopping server...")
+        print(); print(f"{datetime.datetime.today()}: Stopping server...")
     finally:
         server.server_close()  # Close the server socket
 

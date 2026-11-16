@@ -18,8 +18,8 @@ def menu():
     #demo_string()
     #demo_string_functions()
     #string_formatting()
-    string_prefixes()
-    #demo_dates()
+    #string_prefixes()
+    demo_dates()
     #demo_binary()
     #test()
 
@@ -139,6 +139,17 @@ def demo_dates():
     print(dt_4) # 2027-01-01 00:00:00
     dt_5 = datetime.datetime.strptime("01-01-27 00:00:00", "%d-%m-%y %H:%M:%S")
     print(dt_5) # 2027-01-01 00:00:00
+    dt_6 = datetime.datetime.today()
+    dt_6s = dt_6.strftime("%d-%m-%Y %H:%M:%S");
+    print(dt_6s) # 16-11-2026 19:05:02
+    dt_6s = dt_6.strftime("%d-%m-%Y %H:%M:%S.%f");
+    print(dt_6s) # 16-11-2026 19:08:20.489395
+    dt_6s = dt_6.strftime("%d-%m-%Y %H:%M:%S.%f")[:-3];
+    print(dt_6s) # 16-11-2026 19:09:11.007
+    delta: datetime.timedelta = dt_2 - dt
+    print(delta) # 0:00:00.518547
+    print(delta.seconds) # 0
+    print(delta.microseconds) # 500674
 
 def demo_binary():
     print("==== Demo of binary data ====")

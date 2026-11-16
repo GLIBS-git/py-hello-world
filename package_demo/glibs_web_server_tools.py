@@ -2,6 +2,7 @@
     Glibs Python scripts web server tools
 '''
 #!/usr/bin/python3
+import datetime
 #from package_demo.glibs_base_tools import ApplicationConfig
 from .glibs_base_tools import ApplicationConfig
 from http.server import BaseHTTPRequestHandler
@@ -65,6 +66,8 @@ class RestApiHttpHandler(BaseHTTPRequestHandler):
 
 
 class WebAppConfig():
+    serverStartTime: datetime = None;
+
     def __init__(self, filePath: str, confFile: str):
         self.filePath = filePath
         if not os.path.exists(filePath):
@@ -76,7 +79,7 @@ class WebAppConfig():
 
     def load(self):
         self.appConfig = ApplicationConfig(self.confFile)
-        serverAddr = self.appConfig.get("webServerAddress")
+        serverAddr = self.appConfig.get("listenerSettings")
         serverAddr = serverAddr if isinstance(serverAddr, dict) else {}
         self.serverHost = serverAddr.get("host", "localhost")
         self.serverPort = serverAddr.get("port", 5050)

@@ -1,6 +1,9 @@
 {
-    "webServerAddress": {
+    "listenerSettings": {
         "host": "localhost",
         "port": 5050
+    },
+    "runtimeData": {
+        "serverStartTime": null
     }
 }
