@@ -12,24 +12,33 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     # Uncomment the test you want to run:
-    intro()
+    match_function()
+    #findAll_function()
+    #fullmatch_function()
+    #search_function()
     #isPhone('')
     #test()
 
-def intro():
-    print("==== Intro ====")
-    print(re.match('123', '123'))
-    print(re.match('^123$', '123'))
-    print(re.match('2', '123'))
-    #
+def match_function():
+    print("==== Function: match()  ====")
+    print(re.match('123', '123')) # <re.Match object; span=(0, 3), match='123'>
+    print(re.match('^123$', '123')) # <re.Match object; span=(0, 3), match='123'>
+    print(re.match('2', '123')) # None
+
+def findAll_function():
+    print("==== Function: findall() ====")
     print(re.findall('a', '123'))
     print(re.findall('2', '123'))
     print(re.findall('2', '123123123'))
-    #
+
+def fullmatch_function():
+    print("==== Function: fullmatch() ====")
     print(re.fullmatch('123', '123'))
     print(re.fullmatch('^123$', '123'))
     print(re.fullmatch('2', '123'))
-    #
+
+def search_function():
+    print("==== Function: search() ====")
     print(re.search('123', '123'))
     print(re.search('^123$', '123'))
     print(re.search('2', '123'))
