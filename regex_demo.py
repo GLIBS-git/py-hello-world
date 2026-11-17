@@ -28,11 +28,13 @@ def match_function():
     #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '2026-11-17')
     #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '2026.11.17')
     dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '26.11.17')
+    #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '261117')
+    #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '20261117')
     #dd = re.match('(\d{2}(?:\d{2})?)[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '26-11-17')
     print(dd) # <re.Match object; span=(0, 8), match='26-11-17'>
     print(dd.groups()) # ('26', '11', '17')
     print(dd.group(3), dd.group(2), dd.group(1), sep='-') # 17-11-26
-    print(dd.group(0)) # 26-11-17
+    print(dd.group(0)) # 26.11.17
 
 def findAll_function():
     print("==== Function: findall() ====")
