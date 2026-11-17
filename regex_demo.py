@@ -24,6 +24,15 @@ def match_function():
     print(re.match('123', '123')) # <re.Match object; span=(0, 3), match='123'>
     print(re.match('^123$', '123')) # <re.Match object; span=(0, 3), match='123'>
     print(re.match('2', '123')) # None
+    # Groups
+    #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '2026-11-17')
+    #dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '2026.11.17')
+    dd = re.match('(\d{2}|\d{4})[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '26.11.17')
+    #dd = re.match('(\d{2}(?:\d{2})?)[\s\-/.]?(\d{2})[\s\-/.]?(\d{2})$', '26-11-17')
+    print(dd) # <re.Match object; span=(0, 8), match='26-11-17'>
+    print(dd.groups()) # ('26', '11', '17')
+    print(dd.group(3), dd.group(2), dd.group(1), sep='-') # 17-11-26
+    print(dd.group(0)) # 26-11-17
 
 def findAll_function():
     print("==== Function: findall() ====")
@@ -39,9 +48,9 @@ def fullmatch_function():
 
 def search_function():
     print("==== Function: search() ====")
-    print(re.search('123', '123'))
-    print(re.search('^123$', '123'))
-    print(re.search('2', '123'))
+    print(re.search('123', '123')) # <re.Match object; span=(0, 3), match='123'>
+    print(re.search('^123$', '123')) # <re.Match object; span=(0, 3), match='123'>
+    print(re.search('2', '123')) # <re.Match object; span=(1, 2), match='2'>
 
     
 
