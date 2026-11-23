@@ -14,10 +14,12 @@ from urllib.parse import urlparse, parse_qs, unquote
 
 # Response processors
 def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 404 text
+    response: bytes = f"Endpoint '{unquote(urlparse(handler.path).path)}' is not supported for method {method}!".encode('utf-8')
     handler.send_response(404)
     handler.send_header('Content-type', 'text/plain; charset=utf-8')
+    handler.send_header('Content-length', len(response))
     handler.end_headers()
-    handler.wfile.write(f"Endpoint '{unquote(urlparse(handler.path).path)}' is not supported for method {method}!".encode('utf-8'))
+    handler.wfile.write(response)
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
     handler.send_response(200)
