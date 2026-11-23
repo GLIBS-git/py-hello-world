@@ -16,28 +16,34 @@ from urllib.parse import urlparse, parse_qs, unquote
 def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 404 text
     response: bytes = f"Endpoint '{unquote(urlparse(handler.path).path)}' is not supported for method {method}!".encode('utf-8')
     handler.send_response(404)
-    handler.send_header('Content-type', 'text/plain; charset=utf-8')
-    handler.send_header('Content-length', len(response))
+    handler.send_header('content-type', 'text/plain; charset=utf-8')
+    handler.send_header('content-length', len(response))
     handler.end_headers()
     handler.wfile.write(response)
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
+    response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
     handler.send_response(200)
-    handler.send_header('Content-type', 'application/json; charset=utf-8')
+    handler.send_header('content-type', 'application/json; charset=utf-8')
+    handler.send_header('content-length', len(response))
     handler.end_headers()
-    handler.wfile.write(json.dumps(resp_json, ensure_ascii=False).encode('utf-8'))
+    handler.wfile.write(response)
 
 def response_text(handler: BaseHTTPRequestHandler, resp_text: str): # Status 200 text
+    response: bytes = resp_text.encode('utf-8')
     handler.send_response(200)
-    handler.send_header('Content-type', 'text/plain; charset=utf-8')
+    handler.send_header('content-type', 'text/plain; charset=utf-8')
+    handler.send_header('content-length', len(response))
     handler.end_headers()
-    handler.wfile.write(resp_text.encode('utf-8'))
+    handler.wfile.write(response)
 
 def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 200 JSON
+    response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
     handler.send_response(200)
-    handler.send_header('Content-type', 'application/json; charset=utf-8')
+    handler.send_header('content-type', 'application/json; charset=utf-8')
+    handler.send_header('content-length', len(response))
     handler.end_headers()
-    handler.wfile.write(json.dumps(resp_json, ensure_ascii=False).encode('utf-8'))
+    handler.wfile.write(response)
 
 
 class UrlParcer():
