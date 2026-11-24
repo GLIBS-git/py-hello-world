@@ -21,7 +21,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         self.init(doLog=True)
         # GET /
         if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
-            response = "Welcome to glibs py-hello-world base REST API web service!"
+            response = "Welcome to glibs py-hello-world base REST API web service!\n\nUse /api/help endpoint to get the list of available endpoints."
             web_tools.response_ok(self, response)
         # GET /api/help
         elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "help":
@@ -54,7 +54,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
                 "executable": sys.executable,
                 "scriptPath": __file__,
                 "serverStartTime": f"{appConfig.serverStartTime}",
-                "serverActiveTime": f"{(datetime.datetime.today() - appConfig.serverStartTime)}",
+                "serverActiveTime": f"{None if appConfig.serverStartTime is None else (datetime.datetime.today() - appConfig.serverStartTime)}",
             }
             web_tools.response_ok(self, {"sysInfo": sysInfo})
         else:
