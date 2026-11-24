@@ -8,13 +8,14 @@ import numpy as np
 from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent / "package_demo")) # Add the modules directory to the sys.path to allow importing modules from it
-import glibs_tools as glibs_tools 
+import glibs_base_tools as glibs_tools 
 
 def main(_args):
     glibs_tools.clear_console()    
     start = datetime.datetime.now()
     startCaching = datetime.datetime.now()
-    cert_cache()
+    #cert_cache()
+    cert_cache(True)
     print("Elapsed time caching: ", datetime.datetime.now() - startCaching)
     print()
     startSearching = datetime.datetime.now()
@@ -38,7 +39,7 @@ def cert_output(certList):
 
 def cert_test(country, sex):
     print("==== Test cert search ====")
-    ret = []
+    ret: list = []
     counrty_bitmap = country_bitmaps.get(country)
     sex_bitmap = sex_bitmaps.get(sex)
     certList = counrty_bitmap & sex_bitmap
