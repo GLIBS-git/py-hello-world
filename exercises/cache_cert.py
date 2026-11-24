@@ -11,9 +11,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent / "package_demo")) # 
 import glibs_tools as glibs_tools 
 
 def main(_args):
-    menu()
-
-def menu():
     glibs_tools.clear_console()    
     start = datetime.datetime.now()
     startCaching = datetime.datetime.now()
