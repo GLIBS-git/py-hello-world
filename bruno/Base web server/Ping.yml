@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{url}}/ping"
+  url: "{{url}}/api/ping"
   params:
     - name: delay
       value: "3"

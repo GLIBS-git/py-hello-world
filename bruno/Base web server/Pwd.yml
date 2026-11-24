@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{url}}/pwd"
+  url: "{{url}}/api/pwd"
   auth: inherit
 
 settings:

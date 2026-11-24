@@ -21,17 +21,18 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         self.init(doLog=True)
         # GET /
         if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
-            web_tools.response_ok(self, "Welcome to glibs py-hello-world base REST API web service!")
-        # GET /help
-        elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "help":
+            response = "Welcome to glibs py-hello-world base REST API web service!"
+            web_tools.response_ok(self, response)
+        # GET /api/help
+        elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "help":
             helpPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_help.json")
             helpFile = base_tools.ApplicationConfig(helpPath)
             helpCon = helpFile.get("endpointsList")
             helpCon = helpCon if isinstance(helpCon, list) else []
             helpText = "\n".join(helpCon) if helpCon else "No help content available!"
             web_tools.response_text(self, helpText)
-        # GET /ping
-        elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "ping":
+        # GET /api/ping
+        elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "ping":
             delay = 0
             if 'delay' in self.urlParser.query_params:
                 delay_arr = self.urlParser.query_params['delay']
@@ -43,10 +44,10 @@ class BaseHandler(web_tools.RestApiHttpHandler):
                 asyncio.run(asyncio.sleep(delay))
             web_tools.response_ok(self, {"pingResult": "glibs py-hello-world base REST API web service is alive!"})
         # GET /pwd
-        elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "pwd":
+        elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "pwd":
             web_tools.response_ok(self, {"currentDirectory": os.getcwd()})
         # GET /sys-info
-        elif len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "sys-info":
+        elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "sys-info":
             sysInfo = {
                 "platform": sys.platform,
                 "pythonVersion": sys.version,
