@@ -45,14 +45,15 @@ def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 20
     handler.end_headers()
     handler.wfile.write(response)
 
-def response_base(handler: BaseHTTPRequestHandler, status: int, resp_b: bytes): # Base
-    if status is not int:
-        status = 500
+def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes, encoding='application/json; charset=utf-8'): # Base response writer
     handler.send_response(status)
-    handler.send_header('content-type', 'application/json; charset=utf-8')
-    handler.send_header('content-length', str(len(response)))
+    resp_len = len(response)
+    if resp_len:
+        handler.send_header('content-type', encoding)
+        handler.send_header('content-length', str(resp_len))
     handler.end_headers()
-    handler.wfile.write(response)
+    if resp_len:
+        handler.wfile.write(response)
 
 
 class UrlParcer():

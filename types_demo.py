@@ -14,14 +14,22 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     # Uncomment the test you want to run:
-    types_conversion()
-    #demo_string()
+    type_check()
+    #types_conversion()
+    #string_base()
     #demo_string_functions()
     #string_formatting()
     #string_prefixes()
     #demo_dates()
     #demo_binary()
     #test()
+
+def type_check():
+    print("==== Demo of checking a type ====")
+    i: int = 123
+    s: str = '123'
+    print(isinstance(i, int)) # True
+    print(isinstance(s, int)) # False
 
 def types_conversion():
     print("==== Demo of type conversion ====")
@@ -60,7 +68,7 @@ def types_conversion():
     x = None # NULL type
     print(x) # None
 
-def demo_string():
+def string_base():
     print("==== Strings ====")
     s1 = "Test!"
     print(s1)
