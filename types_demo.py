@@ -14,16 +14,16 @@ def main(_args):
 def menu():
     glibs_base_tools.clear_console()    
     # Uncomment the test you want to run:
-    #demo_types()
+    types_conversion()
     #demo_string()
     #demo_string_functions()
     #string_formatting()
     #string_prefixes()
-    demo_dates()
+    #demo_dates()
     #demo_binary()
     #test()
 
-def demo_types():
+def types_conversion():
     print("==== Demo of type conversion ====")
     x = 1
     y = "a"
@@ -38,6 +38,8 @@ def demo_types():
     d = "4a5b6"
     #print(int(d)) # This will raise a ValueError because the string contains non-numeric characters
     print(d.isdigit()) # False, because the string contains non-numeric characters
+    print("12345".isnumeric()) # True
+    print("1a2b3".isnumeric()) # False
     e = "123456"
     print(e.isdigit()) # True, because the string contains only numeric characters
     print(e.isnumeric()) # True, because the string contains only numeric characters
@@ -98,8 +100,6 @@ def demo_string_functions():
     print("; ".join(["123","456","789"])) # From list: 123; 456; 789 
     print("; ".join(("123","456","789"))) # From tuple: 123; 456; 789
     print(" ".join("0123456789")) # From sring array: 0 1 2 3 4 5 6 7 8 9
-    print("12345".isnumeric()) # True
-    print("1a2b3".isnumeric()) # False
 
 def string_formatting():
     print("==== String formatting ====")
