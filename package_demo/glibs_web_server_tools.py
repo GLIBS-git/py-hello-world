@@ -13,6 +13,24 @@ from urllib.parse import urlparse, parse_qs, unquote
 
 
 # Response processors
+class ResponseStatus:
+    @staticmethod
+    def ok_200():
+        return 200
+    @staticmethod
+    def notFound_404():
+        return 404
+
+
+class ContentType:
+    @staticmethod
+    def applicationJson():
+        return "application/json"
+    @staticmethod
+    def textPlain():
+        return "text/plain"
+
+
 def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes=b"", content: str='', encoding: str=''): # Base response writer
     handler.send_response(status)
     resp_len = len(response)
@@ -30,19 +48,19 @@ def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes=
 def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 404 text
     respJs = {"status": 404, "error": "Endpoint not found", "endpointRequested": unquote(urlparse(handler.path).path)}
     response: bytes = json.dumps(respJs, ensure_ascii=False).encode('utf-8')
-    response_base(handler, 404, response, 'text/plain', 'charset=utf-8')
+    response_base(handler, ResponseStatus.notFound_404(), response, ContentType.textPlain(), 'charset=utf-8')
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
     response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
-    response_base(handler, 200, response, 'application/json', 'charset=utf-8')
+    response_base(handler, ResponseStatus.ok_200(), response, ContentType.applicationJson(), 'charset=utf-8')
 
 def response_text(handler: BaseHTTPRequestHandler, resp_text: str): # Status 200 text
     response: bytes = resp_text.encode('utf-8')
-    response_base(handler, 200, response, 'text/plain', 'charset=utf-8')
+    response_base(handler, ResponseStatus.ok_200(), response, ContentType.textPlain(), 'charset=utf-8')
 
 def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 200 JSON
     response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
-    response_base(handler, 200, response, 'application/json', 'charset=utf-8')
+    response_base(handler, ResponseStatus.ok_200(), response, ContentType.applicationJson(), 'charset=utf-8')
 
 
 class UrlParcer():
