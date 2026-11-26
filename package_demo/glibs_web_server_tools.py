@@ -38,27 +38,30 @@ def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 40
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
     response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
-    handler.send_response(200)
-    handler.send_header('content-type', 'application/json; charset=utf-8')
-    handler.send_header('content-length', str(len(response)))
-    handler.end_headers()
-    handler.wfile.write(response)
+    response_base(handler, 200, response, 'application/json', 'charset=utf-8')
+    #handler.send_response(200)
+    #handler.send_header('content-type', 'application/json; charset=utf-8')
+    #handler.send_header('content-length', str(len(response)))
+    #handler.end_headers()
+    #handler.wfile.write(response)
 
 def response_text(handler: BaseHTTPRequestHandler, resp_text: str): # Status 200 text
     response: bytes = resp_text.encode('utf-8')
-    handler.send_response(200)
-    handler.send_header('content-type', 'text/plain; charset=utf-8')
-    handler.send_header('content-length', str(len(response)))
-    handler.end_headers()
-    handler.wfile.write(response)
+    response_base(handler, 200, response, 'text/plain', 'charset=utf-8')
+    #handler.send_response(200)
+    #handler.send_header('content-type', 'text/plain; charset=utf-8')
+    #handler.send_header('content-length', str(len(response)))
+    #handler.end_headers()
+    #handler.wfile.write(response)
 
 def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 200 JSON
     response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
-    handler.send_response(200)
-    handler.send_header('content-type', 'application/json; charset=utf-8')
-    handler.send_header('content-length', str(len(response)))
-    handler.end_headers()
-    handler.wfile.write(response)
+    response_base(handler, 200, response, 'application/json', 'charset=utf-8')
+    #handler.send_response(200)
+    #handler.send_header('content-type', 'application/json; charset=utf-8')
+    #handler.send_header('content-length', str(len(response)))
+    #handler.end_headers()
+    #handler.wfile.write(response)
 
 
 class UrlParcer():
