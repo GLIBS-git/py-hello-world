@@ -15,6 +15,7 @@ def menu():
     use_enum()
     #test()
 
+
 class Colors(Enum):
     TRANSPARENT = 0
     WHITE = 1
