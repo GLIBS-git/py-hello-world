@@ -22,7 +22,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
         # GET /
         if len(self.urlParser.path_list) == 2 and self.urlParser.path_list[1].lower() == "":
             response = "Welcome to glibs py-hello-world base REST API web service!\n\nUse /api/help endpoint to get the list of available endpoints."
-            web_tools.response_ok(self, response)
+            web_tools.response_text(self, response)
         # GET /api/help
         elif len(self.urlParser.path_list) == 3 and self.urlParser.path_list[1].lower() == "api" and self.urlParser.path_list[2].lower() == "help":
             helpPath = str(Path(__file__).resolve().parent / "app_data/base_web_server_help.json")
@@ -56,7 +56,7 @@ class BaseHandler(web_tools.RestApiHttpHandler):
                 "serverStartTime": f"{appConfig.serverStartTime}",
                 "serverActiveTime": f"{None if appConfig.serverStartTime is None else (datetime.datetime.today() - appConfig.serverStartTime)}",
             }
-            web_tools.response_ok(self, {"sysInfo": sysInfo})
+            web_tools.response_json(self, {"sysInfo": sysInfo})
         else:
             web_tools.response_notFound(self, 'GET')
     

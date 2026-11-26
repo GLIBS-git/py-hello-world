@@ -1,7 +1,9 @@
 {
     "endpointsList": [
-        "GET / -- Returns a welcome message.",
-        "GET /help -- Returns help information.",
+        "Glibs py-hello-world base REST API web service endpoints list:",
+        "",
+        "GET / -- Returns a welcome message and info about the help endpoint.",
+        "GET /help -- Returns current help (available endpoints list).",
         "GET /ping -- Returns a ping result.",
         "GET /ping?delay=2 -- Returns a ping result after a delay.",
         "GET /pwd -- Returns the current directory.",

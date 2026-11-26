@@ -28,7 +28,8 @@ def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes=
         handler.wfile.write(response)
 
 def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 404 text
-    response: bytes = f"Endpoint '{unquote(urlparse(handler.path).path)}' is not supported for method {method}!".encode('utf-8')
+    respJs = {"status": 404, "error": "Endpoint not found", "endpointRequested": unquote(urlparse(handler.path).path)}
+    response: bytes = json.dumps(respJs, ensure_ascii=False).encode('utf-8')
     response_base(handler, 404, response, 'text/plain', 'charset=utf-8')
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
