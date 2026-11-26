@@ -13,13 +13,28 @@ from urllib.parse import urlparse, parse_qs, unquote
 
 
 # Response processors
+def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes=b"", content: str='', encoding: str=''): # Base response writer
+    handler.send_response(status)
+    resp_len = len(response)
+    if resp_len:
+        if content:
+            contentType = content
+            if encoding:
+                contentType += '; ' + encoding
+            handler.send_header('content-type', encoding)
+        handler.send_header('content-length', str(resp_len))
+    handler.end_headers()
+    if resp_len:
+        handler.wfile.write(response)
+
 def response_notFound(handler: BaseHTTPRequestHandler, method: str): # Status 404 text
     response: bytes = f"Endpoint '{unquote(urlparse(handler.path).path)}' is not supported for method {method}!".encode('utf-8')
-    handler.send_response(404)
-    handler.send_header('content-type', 'text/plain; charset=utf-8')
-    handler.send_header('content-length', str(len(response)))
-    handler.end_headers()
-    handler.wfile.write(response)
+    response_base(handler, 404, response, 'text/plain', 'charset=utf-8')
+    #handler.send_response(404)
+    #handler.send_header('content-type', 'text/plain; charset=utf-8')
+    #handler.send_header('content-length', str(len(response)))
+    #handler.end_headers()
+    #handler.wfile.write(response)
 
 def response_ok(handler: BaseHTTPRequestHandler, resp_json): # Status 200 JSON
     response: bytes = json.dumps(resp_json, ensure_ascii=False).encode('utf-8')
@@ -44,16 +59,6 @@ def response_json(handler: BaseHTTPRequestHandler, resp_json: dict): # Status 20
     handler.send_header('content-length', str(len(response)))
     handler.end_headers()
     handler.wfile.write(response)
-
-def response_base(handler: BaseHTTPRequestHandler, status: int, response: bytes, encoding='application/json; charset=utf-8'): # Base response writer
-    handler.send_response(status)
-    resp_len = len(response)
-    if resp_len:
-        handler.send_header('content-type', encoding)
-        handler.send_header('content-length', str(resp_len))
-    handler.end_headers()
-    if resp_len:
-        handler.wfile.write(response)
 
 
 class UrlParcer():
