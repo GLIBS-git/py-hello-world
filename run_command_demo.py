@@ -2,6 +2,7 @@
     Run another command or application demo Glibs Python scripts
 '''
 #!/usr/bin/python3
+import os
 import package_demo.glibs_base_tools as glibs_base_tools
 import subprocess
 import sys
@@ -17,7 +18,12 @@ def menu():
 
 def subproc():
     print("==== Run a subprocess ====")
-    result = subprocess.run(['ls', '-la'], capture_output=True, text=True)
+    if os.name == "nt":
+        result = subprocess.run(['cmd', "/c", 'dir'], capture_output=True, text=True) # Problem with encoding
+        #result = subprocess.run(['cmd', "/c", 'chcp 65001 >nul && dir'], capture_output=True, encoding='utf-8', errors='replace') # Not working
+        #result = subprocess.run(['cmd', "/c", 'dir'], capture_output=True, encoding=oem_cp, errors='replace') # Runtime exception
+    else:
+        result = subprocess.run(['ls', '-la'], capture_output=True, text=True)
     print('stdout:')
     print(result.stdout)
     print('stderr:')
